@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/15 08:52:24 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/19 14:45:24 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/19 16:42:18 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,16 @@
 # include <stdlib.h>
 # include <stdio.h>
 
+typedef	struct	s_point
+{
+	int			x;
+	int			y;
+}				t_point;
+
 typedef	struct	s_rect
 {
-	double		x;
-	double		y;
+	float		x;
+	float		y;
 }				t_rect;
 
 typedef	struct	s_mouse
@@ -39,6 +45,15 @@ typedef	struct	s_key
 	int			kr;
 }				t_key;
 
+typedef	struct 	s_img
+{
+	void		*adr;
+	char		*img;
+	int			endian;
+	int			bpp;
+	int			sl;
+}				t_img;
+
 typedef	struct	s_cam
 {
 	t_rect		pos;
@@ -54,16 +69,29 @@ typedef	struct	s_env
 	t_cam		cam;
 	t_mouse		mse;
 	t_key		key;
+	t_img		img;
 }				t_env;
 
 int		expose_hook(t_env *e);
+int     move(t_env *e);
 int		key_press(int kc, t_env *e);
 int		key_release(int kc, t_env *e);
 int		mouse_pos(int x, int y, t_env *e);
+
 void	draw_scene(t_env *e);
-void	draw_line(t_env *e, t_rect src, t_rect dst);
+
+void	img_pixel_put(t_env *e, int x, int y, int color);
+void	draw_line(t_env *e, t_point src, t_point dst);
+
+t_rect  sub_vector(const t_rect vdst, const t_rect vsrc);
 t_rect	add_vector(const t_rect vdst, const t_rect vsrc);
+t_rect  scale_vector(const t_rect vdst, const float scale);
+t_rect  norm_vector(const t_rect vector);
+t_point	int_vector(const t_rect vector);
 void    rotate_vector(t_rect *v, float theta);
+float	mag_vector(const t_rect vector);
+
 t_env 	*init_env(void);
+void	init_img(t_env *e);
 
 #endif

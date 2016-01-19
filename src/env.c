@@ -6,11 +6,19 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 07:27:38 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/19 14:21:06 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/19 16:53:36 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+void	init_img(t_env *e)
+{
+	if (!(e->img.adr = mlx_new_image(e->mlx, e->ws.x, e->ws.y)))
+		exit(0);
+	e->img.img = mlx_get_data_addr(e->img.adr,
+			&e->img.bpp, &e->img.sl, &e->img.endian);
+}
 
 t_env	*init_env(void)
 {
@@ -27,9 +35,10 @@ t_env	*init_env(void)
 	e->cam.pos.y = e->ws.y / 2;
 	e->cam.dir.x = 0;
 	e->cam.dir.y = -277;
-	e->cam.plan.x = 200;
+	e->cam.plan.x = 160;
 	e->cam.plan.y = 0;
 	e->mse.x = e->cam.dir.x;
 	e->mse.y = e->cam.dir.y;
+	init_img(e);
 	return (e);
 }

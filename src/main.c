@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/15 08:49:55 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/19 07:35:54 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/19 16:49:37 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int		main(void)
 	mlx_hook(e->win, 2, (1L << 0), key_press, e);
 	mlx_hook(e->win, 3, (1L << 1), key_release, e);
 	mlx_expose_hook(e->win, expose_hook, e);
+	mlx_loop_hook(e->mlx, move, e);
 	mlx_loop(e->mlx);
 	return (0);
 }

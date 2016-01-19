@@ -6,7 +6,7 @@
 #    By: scollon <scollon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/01 10:19:30 by scollon           #+#    #+#              #
-#    Updated: 2016/01/19 14:37:27 by scollon          ###   ########.fr        #
+#    Updated: 2016/01/19 16:27:31 by scollon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CC = gcc
 CFGLAGS = -Werror -Wextra -Wall
 MLX = -L$(MLX_PATH) -I$(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
 
-SRC_NAME = main.c env.c utils.c hook.c event.c
+SRC_NAME = main.c env.c utils.c hook.c event.c vector.c
 OBJ_NAME = $(SRC_NAME:.c=.o)
 LIB_NAME = libft.a
 
@@ -35,8 +35,8 @@ LIB = $(LIB_PATH)$(LIB_NAME)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	make -C libft re
-	make -C mlx re
+	@#make -C libft re
+	@#make -C mlx re
 	$(CC) $(CFLAGS) $(MLX) $(LIB) $(INC_LIBFT) $(INC) $(OBJ) -o $(NAME)
 	@#$(MAKE) check
 
@@ -54,7 +54,7 @@ clean:
 clean_libft:
 	make -C libft clean
 
-fclean: clean fclean_libft
+fclean: clean
 	rm -f $(NAME)
 
 fclean_libft:

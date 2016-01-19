@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/15 08:52:24 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/19 16:42:18 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/19 17:15:02 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,14 @@ int		mouse_pos(int x, int y, t_env *e);
 void	draw_scene(t_env *e);
 
 void	img_pixel_put(t_env *e, int x, int y, int color);
-void	draw_line(t_env *e, t_point src, t_point dst);
+void	draw_line(t_env *e, t_point src, t_point dst, int color);
 
 t_rect  sub_vector(const t_rect vdst, const t_rect vsrc);
 t_rect	add_vector(const t_rect vdst, const t_rect vsrc);
 t_rect  scale_vector(const t_rect vdst, const float scale);
 t_rect  norm_vector(const t_rect vector);
 t_point	int_vector(const t_rect vector);
+t_rect  mult_vector(const t_rect vector, const float mult);
 void    rotate_vector(t_rect *v, float theta);
 float	mag_vector(const t_rect vector);
 

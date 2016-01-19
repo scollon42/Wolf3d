@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 15:07:32 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/19 16:40:21 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/19 17:14:26 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,14 @@ t_rect	sub_vector(const t_rect vdst, const t_rect vsrc)
 	r.y = vdst.y - vsrc.y;
 	return (r);
 }
+t_rect	mult_vector(const t_rect vector, const float mult)
+{
+	t_rect	r;
 
+	r.x = vector.x * mult;
+	r.y = vector.y * mult;
+	return (r);
+}
 t_rect	scale_vector(const t_rect vdst, const float scale)
 {
 	t_rect	r;

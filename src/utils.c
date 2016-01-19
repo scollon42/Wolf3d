@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 07:31:26 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/19 16:25:23 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/19 17:17:26 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	img_pixel_put(t_env *e, int x, int y, int color)
 	}
 }
 
-void    draw_line(t_env *e, t_point src, t_point dst)
+void    draw_line(t_env *e, t_point src, t_point dst, int color)
 {
 	int	   	err;
 	int		e2;
@@ -39,7 +39,7 @@ void    draw_line(t_env *e, t_point src, t_point dst)
 	err = d.x + d.y;
 	while (src.x != dst.x || src.y != dst.y)
 	{
-		img_pixel_put(e, src.x, src.y, 0xFFFFFF);
+		img_pixel_put(e, src.x, src.y, color);
 		e2 = 2 * err;
 		err = (e2 >= d.y ? err + d.y : err);
 		src.x = (e2 >= d.y ? src.x + s.x : src.x);

@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 07:27:23 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/19 17:00:38 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/19 17:16:41 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ void	draw_scene(t_env *e)
 	dir = add_vector(e->cam.pos, e->cam.dir);
 	plan = add_vector(dir, e->cam.plan);
 	plan2 = sub_vector(dir, e->cam.plan);
-	draw_line(e, int_vector(e->cam.pos), int_vector(dir));
-	draw_line(e, int_vector(plan), int_vector(plan2));
-	draw_line(e, int_vector(plan), int_vector(plan2));
-	draw_line(e, int_vector(e->cam.pos), int_vector(plan2));
-	draw_line(e, int_vector(e->cam.pos), int_vector(plan));
+	draw_line(e, int_vector(e->cam.pos), int_vector(dir), 0x00FFFF);
+	draw_line(e, int_vector(plan), int_vector(plan2), 0xFFFFFF);
+	draw_line(e, int_vector(plan), int_vector(plan2), 0xFFFFFF);
+	draw_line(e, int_vector(e->cam.pos), int_vector(plan2), 0xFF0000);
+	draw_line(e, int_vector(e->cam.pos), int_vector(plan), 0xFF0000);
 }
 
 int		expose_hook(t_env *e)

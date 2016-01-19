@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 07:26:55 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/19 16:43:10 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/19 17:17:47 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int		mouse_pos(int x, int y, t_env *e)
 {
 	e->mse.x = x;
 	e->mse.y = y;
-	expose_hook(e);
 	return (1);
 }
 

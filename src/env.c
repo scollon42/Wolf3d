@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 07:27:38 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/19 16:53:36 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/19 17:13:07 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ t_env	*init_env(void)
 		exit(0);
 	if(!(e->mlx = mlx_init()))
 		exit(0);
-	e->ws.x = 800;
-	e->ws.y = 800;
+	e->ws.x = 1200;
+	e->ws.y = 1200;
 	e->win = mlx_new_window(e->mlx, e->ws.x, e->ws.y, "WOLF3D @ 42");
 	e->cam.pos.x = e->ws.x / 2;
 	e->cam.pos.y = e->ws.y / 2;

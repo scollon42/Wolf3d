@@ -6,75 +6,47 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 15:07:32 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/19 17:14:26 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/20 09:19:43 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-t_rect  add_vector(const t_rect vdst, const t_rect vsrc)
+t_vectI	vec_to_int(const t_vect v)
 {
-	t_rect  r;
+	t_vectI	r;
 
-	r.x = vdst.x + vsrc.x;
-	r.y = vdst.y + vsrc.y;
+	r.x = (int)v.x;
+	r.y = (int)v.y;
 	return (r);
 }
 
-t_rect	sub_vector(const t_rect vdst, const t_rect vsrc)
+t_vect	int_to_vec(const t_vectI i)
 {
-	t_rect  r;
+	t_vect	r;
 
-	r.x = vdst.x - vsrc.x;
-	r.y = vdst.y - vsrc.y;
-	return (r);
-}
-t_rect	mult_vector(const t_rect vector, const float mult)
-{
-	t_rect	r;
-
-	r.x = vector.x * mult;
-	r.y = vector.y * mult;
-	return (r);
-}
-t_rect	scale_vector(const t_rect vdst, const float scale)
-{
-	t_rect	r;
-
-	r = norm_vector(vdst);
-	r.x *= scale;
-	r.y *= scale;
+	r.x = (float)i.x;
+	r.y = (float)i.y;
 	return (r);
 }
 
-t_rect	norm_vector(const t_rect vector)
+float	vec_magnitude(const t_vect v)
 {
-	t_rect	r;
-	float	mag;
+	return (sqrt(v.x * v.x + v.y * v.y));
+}
 
-	mag = mag_vector(vector);
-	r.x = vector.x / mag;
-	r.y = vector.y / mag;
+t_vect	vec_create(float x, float y)
+{
+	t_vect	r;
+
+	r.x = x;
+	r.y = y;
 	return (r);
 }
 
-t_point	int_vector(const t_rect vector)
+void    vec_rotate(t_vect *v, float theta)
 {
-	t_point	r;
-
-	r.x = (int)vector.x;
-	r.y = (int)vector.y;
-	return (r);
-}
-
-float	mag_vector(const t_rect vector)
-{
-	return (sqrt(vector.x * vector.x + vector.y * vector.y));
-}
-
-void    rotate_vector(t_rect *v, float theta)
-{
-	t_rect  t;
+	t_vect  t;
 
 	t.x = v->x * cos(theta) + v->y * -sin(theta);
 	t.y = v->x * sin(theta) + v->y * cos(theta);

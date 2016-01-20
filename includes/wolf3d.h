@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/15 08:52:24 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/19 17:15:02 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/20 11:13:43 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,19 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-typedef	struct	s_point
+# define R2D 3.1415926 / 180
+
+typedef	struct	s_vectI
 {
 	int			x;
 	int			y;
-}				t_point;
+}				t_vectI;
 
-typedef	struct	s_rect
+typedef	struct	s_vect
 {
 	float		x;
 	float		y;
-}				t_rect;
-
-typedef	struct	s_mouse
-{
-	int			x;
-	int			y;
-}				t_mouse;
+}				t_vect;
 
 typedef	struct	s_key
 {
@@ -54,22 +50,34 @@ typedef	struct 	s_img
 	int			sl;
 }				t_img;
 
+typedef	struct	s_map
+{
+
+	size_t		size;
+	int			**map;
+	int			wall_h;
+	t_vectI		wall_s;
+}				t_map;
+
 typedef	struct	s_cam
 {
-	t_rect		pos;
-	t_rect		dir;
-	t_rect		plan;
+	t_vect		pos;
+	t_vect		dir;
+	t_vect		plan;
+	int			fov;
+	int			h;
 }				t_cam;
 
 typedef	struct	s_env
 {
 	void		*mlx;
 	void		*win;
-	t_rect		ws;
+	t_vectI		ws;
+	t_vectI		mse;
 	t_cam		cam;
-	t_mouse		mse;
 	t_key		key;
 	t_img		img;
+	t_map		map;
 }				t_env;
 
 int		expose_hook(t_env *e);
@@ -81,16 +89,18 @@ int		mouse_pos(int x, int y, t_env *e);
 void	draw_scene(t_env *e);
 
 void	img_pixel_put(t_env *e, int x, int y, int color);
-void	draw_line(t_env *e, t_point src, t_point dst, int color);
+void	draw_line(t_env *e, t_vectI src, t_vectI dst, int color);
 
-t_rect  sub_vector(const t_rect vdst, const t_rect vsrc);
-t_rect	add_vector(const t_rect vdst, const t_rect vsrc);
-t_rect  scale_vector(const t_rect vdst, const float scale);
-t_rect  norm_vector(const t_rect vector);
-t_point	int_vector(const t_rect vector);
-t_rect  mult_vector(const t_rect vector, const float mult);
-void    rotate_vector(t_rect *v, float theta);
-float	mag_vector(const t_rect vector);
+t_vect	vec_create(float x, float y);
+t_vectI	vec_to_int(const t_vect v);
+t_vect  int_to_vec(const t_vectI i);
+float	vec_magnitude(const t_vect v);
+void    vec_rotate(t_vect *v, float theta);
+t_vect  vec_add(const t_vect va, const t_vect vb);
+t_vect	vec_sub(const t_vect va, const t_vect vb);
+t_vect	vec_mult(const t_vect v, const float mult);
+t_vect	vec_scale(const t_vect v, const float scale);
+t_vect	vec_norm(const t_vect v);
 
 t_env 	*init_env(void);
 void	init_img(t_env *e);

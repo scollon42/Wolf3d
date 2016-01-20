@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 07:27:23 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/20 11:00:57 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/20 14:11:53 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		move(t_env *e)
 {
-	if(1)
+	if(e->key.ku || e->key.kd || e->key.kl || e->key.kr)
 	{
 		if (e->key.ku)
 			e->cam.pos = vec_add(e->cam.pos, vec_scale(e->cam.dir, 5));
@@ -22,13 +22,13 @@ int		move(t_env *e)
 			e->cam.pos = vec_sub(e->cam.pos, vec_scale(e->cam.dir, 5));
 		if (e->key.kl)
 		{
-			vec_rotate(&e->cam.dir, -0.05);
-			vec_rotate(&e->cam.plan, -0.05);
+			vec_rotate(&e->cam.dir, -2.5);
+			vec_rotate(&e->cam.plan, -2.5);
 		}
 		if (e->key.kr)
 		{
-			vec_rotate(&e->cam.dir, 0.05);
-			vec_rotate(&e->cam.plan, 0.05);
+			vec_rotate(&e->cam.dir, 2.5);
+			vec_rotate(&e->cam.plan, 2.5);
 		}
 		expose_hook(e);
 	}
@@ -46,7 +46,7 @@ void	draw_scene(t_env *e)
 	plan2 = vec_sub(dir, e->cam.plan);
 	draw_line(e, vec_to_int(e->cam.pos), vec_to_int(dir), 0x00FFFF);
 	draw_line(e, vec_to_int(plan), vec_to_int(plan2), 0xFFFFFF);
-
+	raycast(e);
 }
 
 int		expose_hook(t_env *e)

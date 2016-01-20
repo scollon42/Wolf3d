@@ -6,11 +6,20 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 15:07:32 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/20 09:19:43 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/20 16:02:05 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+int		vec_cmp(const t_vect va, const t_vect vb)
+{
+	if (fabs(va.x - vb.x) > 0.897)
+		return (0);
+	if (fabs(va.y - vb.y) > 0.897)
+		return (0);
+	return (1);
+}
 
 t_vectI	vec_to_int(const t_vect v)
 {
@@ -48,6 +57,7 @@ void    vec_rotate(t_vect *v, float theta)
 {
 	t_vect  t;
 
+	theta *= D2R;
 	t.x = v->x * cos(theta) + v->y * -sin(theta);
 	t.y = v->x * sin(theta) + v->y * cos(theta);
 	v->x = t.x;

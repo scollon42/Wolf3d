@@ -6,7 +6,7 @@
 #    By: scollon <scollon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/01 10:19:30 by scollon           #+#    #+#              #
-#    Updated: 2016/01/20 07:33:27 by scollon          ###   ########.fr        #
+#    Updated: 2016/01/20 13:31:02 by scollon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CC = gcc
 CFGLAGS = -Werror -Wextra -Wall
 MLX = -L$(MLX_PATH) -I$(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
 
-SRC_NAME = main.c env.c utils.c hook.c event.c vector.c vectorop.c
+SRC_NAME = main.c env.c utils.c hook.c event.c vector.c vectorop.c raycast.c
 OBJ_NAME = $(SRC_NAME:.c=.o)
 LIB_NAME = libft.a
 

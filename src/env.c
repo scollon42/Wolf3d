@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 07:27:38 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/20 11:15:20 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/20 16:27:13 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,14 @@ void	init_cam(t_env *e)
 {
 	e->cam.pos.x = e->ws.x / 2;
 	e->cam.pos.y = e->ws.y / 2;
-	e->Cam.fov = 160;
-	e->cam.fov_ang = 30;
+	e->cam.view = e->ws.x / 2;
+	e->cam.fov = 60;
 	e->cam.dir.x = 0;
-	e->cam.dir.y = e->cam.fov / tan(e->cam.fov_ang * R2D);
-	e->cam.plan.x = e->cam.fov;
+	e->cam.dir.y = -fabs(e->cam.view / tan((e->cam.fov / 2)  * D2R));
+	e->cam.plan.x = e->cam.view;
 	e->cam.plan.y = 0;
+	e->cam.r_ang = ((float)e->cam.fov) / (((float)e->cam.view));
+	printf("%f\n", e->cam.r_ang);
 	e->cam.h = e->map.wall_h / 2;
 }
 
@@ -100,8 +102,8 @@ t_env	*init_env(void)
 		exit(0);
 	if(!(e->mlx = mlx_init()))
 		exit(0);
-	e->ws.x = 1800;
-	e->ws.y = 1800;
+	e->ws.x = 1280;
+	e->ws.y = 800;
 	e->win = mlx_new_window(e->mlx, e->ws.x, e->ws.y, "WOLF3D @ 42");
 	e->mse.x = e->cam.dir.x;
 	e->mse.y = e->cam.dir.y;

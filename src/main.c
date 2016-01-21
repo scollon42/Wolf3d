@@ -5,23 +5,55 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/15 08:49:55 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/20 10:12:48 by scollon          ###   ########.fr       */
+/*   Created: 2016/01/21 16:01:47 by scollon           #+#    #+#             */
+/*   Updated: 2016/01/21 16:51:22 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "wlf3d.h"
 
-int		main(void)
+static	void	aff_help(t_env *e)
+{
+	ft_putendl("Here we'll be able to help you. Soon.. I promise.");
+	quit(0, e, NULL);
+}
+
+static	void	read_arg(t_env *e, int ac, char **av)
+{
+	int		i;
+
+	i = 0;
+	e->arg.w = 0;
+	e->arg.h = 0;
+	e->arg.map = NULL;
+	if (ac == 2 && ft_strcmp(av[1], "--help") == 0)
+		aff_help(e);
+	while (++i < ac)
+	{
+		if (ft_strcmp(av[i], "-m") == 0)
+			e->arg.map = ft_strdup(av[i + 1]);
+		if (ft_strcmp(av[i], "-w") == 0)
+			e->arg.w = ft_atoi(av[i + 1]);
+		if (ft_strcmp(av[i], "-h") == 0)
+			e->arg.h = ft_atoi(av[i + 1]);
+	}
+	e->arg.map == NULL ? e->arg.map = ft_strdup("./ressources/map.wf") : 0;
+	e->arg.w = e->arg.h == 0 ? e->arg.w = 800 : 0;
+	e->arg.h = e->arg.h == 0 ? e->arg.h = 800 : 0;
+	if ((e->arg.fd = open(e->arg.map, O_RDWR)) == -1)
+		quit(1, e, "Error : failed to load map file\n");
+}
+
+int		main(int ac, char **av)
 {
 	t_env	*e;
 
-	e = init_env();
-	mlx_hook(e->win, 6, (1L << 6), mouse_pos, e);
-	mlx_hook(e->win, 2, (1L << 0), key_press, e);
-	mlx_hook(e->win, 3, (1L << 1), key_release, e);
-	mlx_expose_hook(e->win, expose_hook, e);
-	mlx_loop_hook(e->mlx, move, e);
+	if(!(e = (t_env *)malloc(sizeof(t_env))))
+		quit(1, NULL, "Error : environnement can't be create\n");
+	read_arg(e, ac, av);
+	env_init(e);
 	mlx_loop(e->mlx);
+	//core(e);
+	quit (0, e, NULL);
 	return (0);
 }

@@ -6,18 +6,18 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 08:25:27 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/21 08:37:50 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/21 08:59:59 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	LIBVECT_H
+#ifndef LIBVECT_H
 # define LIBVECT_H
 
 # include <math.h>
 
-# define	PI	3.1415926
-# define	D2R	PI / 180
-# define	R2D 180 / PI
+# define PI	 3.1415926
+# define D2R PI / 180
+# define R2D 180 / PI
 
 typedef struct  s_vectI
 {

@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 07:27:23 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/21 08:15:31 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/21 13:46:52 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,10 @@ int		move(t_env *e)
 void	draw_scene(t_env *e)
 {
 	t_vect	dir;
-	t_vect	plan;
-	t_vect	plan2;
 
 	dir = vec_add(e->cam.pos, e->cam.dir);
-	plan = vec_add(dir, e->cam.plan);
-	plan2 = vec_sub(dir, e->cam.plan);
+	img_pixel_put(e, (int)e->cam.pos.x, (int)e->cam.pos.y, 0xFFFFFF);
 	draw_line(e, vec_to_int(e->cam.pos), vec_to_int(dir), 0x00FFFF);
-	draw_line(e, vec_to_int(plan), vec_to_int(plan2), 0xFFFFFF);
 	raycast(e);
 }
 

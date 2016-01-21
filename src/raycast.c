@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 13:14:23 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/20 16:48:32 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/21 08:15:24 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,16 @@ void	raycast(t_env *e)
 				pos.x + ray_t.x < 0 || pos.y + ray_t.y < 0)
 				break;
 			if (e->map.map[pos.y + (int)ray_t.y][pos.x + (int)ray_t.x] > 0)
-				hit = 1;
+				break ;
 			ray_t = vec_scale(ray_t, j);
 			j++;
+		}
+		draw_line(e, vec_to_int(e->cam.pos), vec_to_int(vec_add(e->cam.pos, ray_t)), 0x00Faaa);
+		if (e->map.map[pos.y + (int)ray_t.y][pos.x + (int)ray_t.x] > 0)
+		{
+			t_vectI	pos2 = vec_to_int(vec_add(e->cam.pos, ray_t));
+			printf("%d - %d\n", pos2.x, pos2.y);
+			img_pixel_put(e, pos2.x, pos2.y, 0xFF0000);
 		}
 	}
 }

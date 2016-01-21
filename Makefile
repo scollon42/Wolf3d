@@ -6,44 +6,44 @@
 #    By: scollon <scollon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/01 10:19:30 by scollon           #+#    #+#              #
-#    Updated: 2016/01/20 13:31:02 by scollon          ###   ########.fr        #
+#    Updated: 2016/01/21 08:50:15 by scollon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_PATH = ./src/
 OBJ_PATH = ./obj/
 INC_PATH = ./includes/
-INC_LIBFT_PATH = ./libft/includes/
-LIB_PATH = ./libft/
-MLX_PATH = ./mlx
+LIB_PATH = ./lib/
+INC_LIBFT_PATH = $(LIB_PATH)libft/includes/ $(LIB_PATH)libvect/includes/
+MLX_PATH = $(LIB_PATH)mlx/
 
 NAME = wolf3d
 CC = gcc
 CFGLAGS = -Werror -Wextra -Wall
 MLX = -L$(MLX_PATH) -I$(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
 
-SRC_NAME = main.c env.c utils.c hook.c event.c vector.c vectorop.c raycast.c
+SRC_NAME = main.c env.c utils.c hook.c event.c raycast.c
 OBJ_NAME = $(SRC_NAME:.c=.o)
-LIB_NAME = libft.a
+LIB_NAME = libft/libft.a libvect/libvect.a
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 INC = $(addprefix -I,$(INC_PATH))
 INC_LIBFT = $(addprefix -I,$(INC_LIBFT_PATH))
-LIB = $(LIB_PATH)$(LIB_NAME)
+LIB = $(addprefix $(LIB_PATH),$(LIB_NAME))
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@#make -C libft re
-	@#make -C mlx re
+	@#make -C $(LIB_PATH)libft re
+	@make -C $(LIB_PATH)libvect re
+	@#make -C $(LIB_PATH)mlx re
 	$(CC) $(CFLAGS) $(MLX) $(LIB) $(INC_LIBFT) $(INC) $(OBJ) -o $(NAME)
 	@#$(MAKE) check
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir $(OBJ_PATH) 2>/dev/null || echo "" > /dev/null
-	@$(CC) $(CFLAGS) $(INC_LIBFT) $(INC) -o $@ -c $<
-	@printf "%-.30s %s" "$< .............................." && echo "[\033[1;32mOK\033[0m]"
+	$(CC) $(CFLAGS) $(INC_LIBFT) $(INC) -o $@ -c $<
 
 .PHONY: clean fclean re check fclean_libft clean_libft
 

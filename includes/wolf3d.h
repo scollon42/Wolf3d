@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/15 08:52:24 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/20 14:11:33 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/21 08:28:23 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,11 @@
 #define WOLF3D_H
 
 # include <libft.h>
+# include <libvect.h>
 # include <mlx.h>
 # include <math.h>
 # include <stdlib.h>
 # include <stdio.h>
-
-# define D2R 3.1415926 / 180
-
-typedef	struct	s_vectI
-{
-	int			x;
-	int			y;
-}				t_vectI;
-
-typedef	struct	s_vect
-{
-	float		x;
-	float		y;
-}				t_vect;
 
 typedef	struct	s_key
 {
@@ -93,18 +80,6 @@ void	raycast(t_env *e);
 
 void	img_pixel_put(t_env *e, int x, int y, int color);
 void	draw_line(t_env *e, t_vectI src, t_vectI dst, int color);
-
-t_vect	vec_create(float x, float y);
-t_vectI	vec_to_int(const t_vect v);
-t_vect  int_to_vec(const t_vectI i);
-int		vec_cmp(const t_vect va, const t_vect vb);
-float	vec_magnitude(const t_vect v);
-void    vec_rotate(t_vect *v, float theta);
-t_vect  vec_add(const t_vect va, const t_vect vb);
-t_vect	vec_sub(const t_vect va, const t_vect vb);
-t_vect	vec_mult(const t_vect v, const float mult);
-t_vect	vec_scale(const t_vect v, const float scale);
-t_vect	vec_norm(const t_vect v);
 
 t_env 	*init_env(void);
 void	init_img(t_env *e);

@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 16:30:23 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/22 07:52:29 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/22 08:38:54 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	env_init(t_env *e)
 	e->win.h = e->arg.h;
 	e->win.adr = mlx_new_window(e->mlx, e->win.w, e->win.h, "WOLF3D @ 42");
 	if (e->win.adr == NULL)
-		quit (1, e, "Error : mlx failed to create window\n");
+		quit(1, e, "Error : mlx failed to create window\n");
 	img_init(e);
 	cam_init(e);
 	key_init(&e->key);

@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 15:52:00 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/22 08:12:14 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/22 08:55:59 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ void			key_init(t_key *k);
 void			map_init(t_env *e);
 
 void			core(t_env *e);
-int				expose_hook(t_env *e);
 
 void			render(t_env *e);
 void			img_pixel_put(t_env *e, int x, int y, int color);

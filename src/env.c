@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 16:30:23 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/22 08:38:54 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/22 12:26:03 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	cam_init(t_env *e)
 	e->cam.pos = vec_create(10, 10);
 	e->cam.dir = vec_create(0, -1);
 	e->cam.pln = vec_create(1, 0);
+	e->cam.run = 0.05;
 }
 
 void	key_init(t_key *k)
@@ -34,6 +35,7 @@ void	key_init(t_key *k)
 	k->kdn = 0;
 	k->klt = 0;
 	k->krt = 0;
+	k->run = 1;
 }
 
 void	env_init(t_env *e)

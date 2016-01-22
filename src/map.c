@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 07:50:25 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/22 08:17:54 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/22 11:24:51 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,6 @@ static void	print_map(t_map map)
 	}
 }
 
-static void	destroy_tab(char **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i] != NULL)
-	{
-		ft_strdel(&tab[i]);
-		i++;
-	}
-	ft_strdel(tab);
-}
-
 static int	*fill_map(t_env *e, char **line)
 {
 	int		i;
@@ -60,9 +47,11 @@ static int	*fill_map(t_env *e, char **line)
 	{
 		if ((map[i] = ft_atoi(tab[i])) > 9)
 			quit(1, e, "Error : invalid map file\n");
+		ft_strdel(&tab[i]);
 		i++;
 	}
-	destroy_tab(tab);
+	free(tab);
+	tab = NULL;
 	return (map);
 }
 
@@ -80,9 +69,8 @@ void		map_init(t_env *e)
 		quit(1, e, "Error : failed to load map\n");
 	while (i < e->map.size)
 	{
-		e->map.map[i] = fill_map(e, &line);
+		e->map.map[i++] = fill_map(e, &line);
 		ft_strdel(&line);
-		i++;
 	}
 	ft_strdel(&line);
 	if ((close(e->arg.fd)) == -1)

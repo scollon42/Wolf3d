@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 15:52:00 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/22 08:55:59 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/22 12:28:46 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef	struct	s_cam
 	t_vect		dir;
 	t_vect		pln;
 	float		cam;
+	float		run;
 }				t_cam;
 
 typedef	struct	s_key
@@ -59,6 +60,7 @@ typedef	struct	s_key
 	int			kdn;
 	int			klt;
 	int			krt;
+	int			run;
 }				t_key;
 
 typedef	struct	s_map
@@ -66,6 +68,20 @@ typedef	struct	s_map
 	int			**map;
 	size_t		size;
 }				t_map;
+
+typedef	struct	s_ray
+{
+	t_vect		pos;
+	t_vect		dir;
+	t_vect		len;
+	t_vect		a;
+	t_vectI		map;
+	t_vectI		step;
+	int			side;
+	int			hit;
+	float		cam;
+	double		dist;
+}				t_ray;
 
 typedef struct	s_env
 {
@@ -77,6 +93,7 @@ typedef struct	s_env
 	t_key		key;
 	t_vectI		mse;
 	t_map		map;
+	t_ray		ray;
 }				t_env;
 
 void			quit(int error, t_env *e, char *msg);

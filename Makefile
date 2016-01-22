@@ -22,7 +22,7 @@ CC = gcc
 CFGLAGS = -Werror -Wextra -Wall
 MLX = -L$(MLX_PATH) -I$(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
 
-SRC_NAME = main.c env.c core.c render.c event.c map.c quit.c
+SRC_NAME = main.c env.c core.c render.c event.c map.c sprites.c quit.c
 OBJ_NAME = $(SRC_NAME:.c=.o)
 LIB_NAME = libft/libft.a libvect/libvect.a
 

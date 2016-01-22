@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 16:30:23 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/22 12:26:03 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/22 16:58:09 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	img_init(t_env *e)
 
 void	cam_init(t_env *e)
 {
-	e->cam.pos = vec_create(10, 10);
+	e->cam.pos = vec_create(4, 1);
 	e->cam.dir = vec_create(0, -1);
 	e->cam.pln = vec_create(1, 0);
 	e->cam.run = 0.05;
@@ -51,4 +51,5 @@ void	env_init(t_env *e)
 	cam_init(e);
 	key_init(&e->key);
 	map_init(e);
+	sprites_init(e);
 }

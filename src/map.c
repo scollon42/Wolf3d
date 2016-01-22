@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 07:50:25 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/22 11:24:51 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/22 16:57:59 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	*fill_map(t_env *e, char **line)
 	if (!(map = (int*)malloc(sizeof(int) * e->map.size)))
 		quit(1, e, "Error : failed to load map\n");
 	get_next_line(e->arg.fd, line);
-	tab = ft_strsplit(*line, ',');
+	tab = ft_strsplit(*line, ' ');
 	while (tab[i] != NULL)
 	{
 		if ((map[i] = ft_atoi(tab[i])) > 9)

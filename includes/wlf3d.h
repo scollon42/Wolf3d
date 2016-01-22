@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 15:52:00 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/22 12:28:46 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/22 15:57:33 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,21 @@ typedef	struct	s_ray
 	t_vectI		step;
 	int			side;
 	int			hit;
+	int			wallc;
 	float		cam;
 	double		dist;
 }				t_ray;
+
+typedef struct	s_spr
+{
+	void		*adr;
+	char		*spr;
+	int			w;
+	int			h;
+	int			bpp;
+	int			sl;
+	int			endian;
+}				t_spr;
 
 typedef struct	s_env
 {
@@ -94,6 +106,7 @@ typedef struct	s_env
 	t_vectI		mse;
 	t_map		map;
 	t_ray		ray;
+	t_spr		spr;
 }				t_env;
 
 void			quit(int error, t_env *e, char *msg);
@@ -112,5 +125,8 @@ void			img_pixel_put(t_env *e, int x, int y, int color);
 int				mouse_pos(int x, int y, t_env *e);
 int				key_press(int kc, t_env *e);
 int				key_release(int kc, t_env *e);
+
+void			sprites_init(t_env *e);
+void			put_sprites(t_env *e);
 
 #endif

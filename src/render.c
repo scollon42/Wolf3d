@@ -6,11 +6,21 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 07:38:09 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/22 12:28:38 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/22 17:08:44 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wlf3d.h"
+
+int			rgb_to_hex(int r, int g, int b)
+{
+	int color;
+
+	color = b;
+	color += g * 256;
+	color += (r * 256) * 256;
+	return (color);
+}
 
 void		img_pixel_put(t_env *e, int x, int y, int color)
 {
@@ -121,7 +131,7 @@ void		render(t_env *e)
 			if (e->ray.side == 1)
 				img_pixel_put(e, r.x, r.y, 0xFFFFFF);
 			else
-				img_pixel_put(e, r.x, r.y, 0x969696);
+				img_pixel_put(e, r.x, r.y, 0xcccccc);
 			r.y++;
 		}
 		if (de < 0)
@@ -129,8 +139,8 @@ void		render(t_env *e)
 		r.y = de;
 		while (r.y < e->win.h)
 		{
-			img_pixel_put(e, r.x, r.y, 0x803131);
-			img_pixel_put(e, r.x, e->win.h - r.y - 1, 0x40ffff);
+			img_pixel_put(e, r.x, r.y, 0x7B7263);
+			img_pixel_put(e, r.x, e->win.h - r.y - 1, 0x101010);
 			r.y++;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 15:52:00 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/21 16:50:47 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/22 08:12:14 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,12 @@ typedef	struct	s_key
 	int			krt;
 }				t_key;
 
+typedef	struct	s_map
+{
+	int			**map;
+	size_t		size;
+}				t_map;
+
 typedef struct	s_env
 {
 	t_arg		arg;
@@ -69,6 +75,8 @@ typedef struct	s_env
 	t_img		img;
 	t_cam		cam;
 	t_key		key;
+	t_vectI		mse;
+	t_map		map;
 }				t_env;
 
 void			quit(int error, t_env *e, char *msg);
@@ -77,5 +85,16 @@ void			env_init(t_env *e);
 void			img_init(t_env *e);
 void			cam_init(t_env *e);
 void			key_init(t_key *k);
+void			map_init(t_env *e);
+
+void			core(t_env *e);
+int				expose_hook(t_env *e);
+
+void			render(t_env *e);
+void			img_pixel_put(t_env *e, int x, int y, int color);
+
+int				mouse_pos(int x, int y, t_env *e);
+int				key_press(int kc, t_env *e);
+int				key_release(int kc, t_env *e);
 
 #endif

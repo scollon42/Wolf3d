@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 16:01:47 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/21 16:51:22 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/22 08:12:52 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,19 @@ static	void	read_arg(t_env *e, int ac, char **av)
 	e->arg.h = e->arg.h == 0 ? e->arg.h = 800 : 0;
 	if ((e->arg.fd = open(e->arg.map, O_RDWR)) == -1)
 		quit(1, e, "Error : failed to load map file\n");
+	ft_strdel(&e->arg.map);
 }
 
 int		main(int ac, char **av)
 {
 	t_env	*e;
 
+	system("clear"); // tmp
 	if(!(e = (t_env *)malloc(sizeof(t_env))))
 		quit(1, NULL, "Error : environnement can't be create\n");
 	read_arg(e, ac, av);
 	env_init(e);
-	mlx_loop(e->mlx);
-	//core(e);
+	core(e);
 	quit (0, e, NULL);
 	return (0);
 }

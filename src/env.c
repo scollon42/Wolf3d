@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 16:30:23 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/21 16:51:58 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/22 07:52:29 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,5 @@ void	env_init(t_env *e)
 	img_init(e);
 	cam_init(e);
 	key_init(&e->key);
+	map_init(e);
 }

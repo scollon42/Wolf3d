@@ -6,34 +6,11 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 07:38:09 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/22 17:08:44 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/23 09:28:40 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wlf3d.h"
-
-int			rgb_to_hex(int r, int g, int b)
-{
-	int color;
-
-	color = b;
-	color += g * 256;
-	color += (r * 256) * 256;
-	return (color);
-}
-
-void		img_pixel_put(t_env *e, int x, int y, int color)
-{
-	int		pos;
-
-	if (x >= 0 && x < e->win.w && y >= 0 && y < e->win.h)
-	{
-		pos = (x * e->img.bpp / 8) + (y * e->img.sl);
-		e->img.img[pos] = color % 256;
-		e->img.img[pos + 1] = (color >> 8) % 256;
-		e->img.img[pos + 2] = (color >> 16) % 256;
-	}
-}
 
 static void raycast_init(t_env *e, int x)
 {
@@ -92,56 +69,62 @@ static void	raycast_cast(t_env *e)
 			e->ray.side = 1;
 		}
 		if (e->ray.map.x > e->map.size - 1 || e->ray.map.y > e->map.size - 1 ||
-			e->ray.map.x < 0 || e->ray.map.y < 0)
+				e->ray.map.x < 0 || e->ray.map.y < 0)
 			break ;
 		if (e->map.map[e->ray.map.y][e->ray.map.x] > 0)
 			e->ray.hit = 1;
 	}
-	if (e->ray.side == 0)
-		e->ray.dist = fabs((e->ray.map.x - e->ray.pos.x +
-		(1 - e->ray.step.x) / 2) / e->ray.dir.x);
-	else
-		e->ray.dist = fabs((e->ray.map.y - e->ray.pos.y +
-		(1 - e->ray.step.y) / 2) / e->ray.dir.y);
 }
 
-void		render(t_env *e)
+static void	raycast_draw(t_env *e, int x)
 {
 	int		hl;
 	int		ds;
 	int		de;
-	t_vectI	r;
+	int		color;
 
-	r = vec_to_int(vec_create(-1, 0));
-	while (++r.x <= e->win.w)
+	hl = abs((int)(e->win.h / e->ray.dist));
+	ds = (int)(-hl / 2 + e->win.h / 2) - 1;
+	de = (int)(hl / 2 + e->win.h / 2);
+	ds < -1 ? ds = -1 : 0;
+	de >= e->win.h ? de = e->win.h - 1 : 0;
+	color = 210 - e->ray.dist * 8.0;
+	color < 0 ? color = 0 : 0;
+	while (++ds < de)
 	{
-		raycast_init(e, r.x);
+		if (e->ray.side == 1)
+			img_pixel_put(e, x, ds, rgb_to_hex(color + 30, color + 30, color + 30));
+		else
+			img_pixel_put(e, x, ds, rgb_to_hex(color, color, color));
+	}
+	de = de < 0 ? e->win.h - 1 : de - 1;
+	while (++de < e->win.h)
+	{
+		img_pixel_put(e, x, de, 0x7B7263);
+		img_pixel_put(e, x, e->win.h - de - 1, 0x101010);
+	}
+}
+
+void		render(t_env *e)
+{
+	int	x;
+
+	x = 0;
+	while (++x <= e->win.w)
+	{
+		raycast_init(e, x);
 		raycast_calc(e);
 		raycast_cast(e);
-		hl = abs((int)(e->win.h / e->ray.dist));
-		ds = (int)(-hl / 2 + e->win.h / 2);
-		de = (int)(hl / 2 + e->win.h / 2);
-		if (ds < 0)
-			ds = 0;
-		if (de >= e->win.h)
-			de = e->win.h - 1;
-		r.y = ds;
-		while (r.y < de)
+		if (e->ray.side == 0)
 		{
-			if (e->ray.side == 1)
-				img_pixel_put(e, r.x, r.y, 0xFFFFFF);
-			else
-				img_pixel_put(e, r.x, r.y, 0xcccccc);
-			r.y++;
+			e->ray.dist = fabs((e->ray.map.x - e->ray.pos.x +
+						(1 - e->ray.step.x) / 2) / e->ray.dir.x);
 		}
-		if (de < 0)
-			de = e->win.h;
-		r.y = de;
-		while (r.y < e->win.h)
+		else
 		{
-			img_pixel_put(e, r.x, r.y, 0x7B7263);
-			img_pixel_put(e, r.x, e->win.h - r.y - 1, 0x101010);
-			r.y++;
+			e->ray.dist = fabs((e->ray.map.y - e->ray.pos.y +
+						(1 - e->ray.step.y) / 2) / e->ray.dir.y);
 		}
+		raycast_draw(e, x);
 	}
 }

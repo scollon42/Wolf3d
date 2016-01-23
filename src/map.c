@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 07:50:25 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/22 16:57:59 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/23 09:13:31 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,5 @@ void		map_init(t_env *e)
 	ft_strdel(&line);
 	if ((close(e->arg.fd)) == -1)
 		quit(1, e, "Error : close() failed\n");
-	print_map(e->map);
+	//print_map(e->map);
 }

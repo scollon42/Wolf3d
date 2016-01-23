@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 15:52:00 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/22 15:57:33 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/23 12:30:23 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <math.h>
 # include <stdlib.h>
 # include <mlx.h>
+# include <SDL.h>
+# include <SDL_mixer.h>
 
 # include <stdio.h> // tmp .h
 
@@ -52,14 +54,17 @@ typedef	struct	s_cam
 	t_vect		pln;
 	float		cam;
 	float		run;
+	short		shoot;
 }				t_cam;
 
 typedef	struct	s_key
 {
-	int			kup;
-	int			kdn;
-	int			klt;
-	int			krt;
+	int			w;
+	int			s;
+	int			a;
+	int			d;
+	int			q;
+	int			e;
 	int			run;
 }				t_key;
 
@@ -93,6 +98,8 @@ typedef struct	s_spr
 	int			bpp;
 	int			sl;
 	int			endian;
+	int			index;
+	t_vectI		pos;
 }				t_spr;
 
 typedef struct	s_env
@@ -106,7 +113,7 @@ typedef struct	s_env
 	t_vectI		mse;
 	t_map		map;
 	t_ray		ray;
-	t_spr		spr;
+	t_spr		*spr;
 }				t_env;
 
 void			quit(int error, t_env *e, char *msg);
@@ -120,7 +127,9 @@ void			map_init(t_env *e);
 void			core(t_env *e);
 
 void			render(t_env *e);
+
 void			img_pixel_put(t_env *e, int x, int y, int color);
+int				rgb_to_hex(int r, int g, int b);
 
 int				mouse_pos(int x, int y, t_env *e);
 int				key_press(int kc, t_env *e);

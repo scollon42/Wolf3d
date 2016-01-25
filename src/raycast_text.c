@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 11:20:20 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/25 16:04:05 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/25 16:57:32 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	raycast_tx(t_env *e, int ds, int de, int hl)
 	double		wall;
 
 	i = ds - 1;
-	e->texv.index = e->map.map[(int)e->ray.pos.y][(int)e->ray.pos.x] - 1;
-	e->texv.index < 0 ? e->texv.index = 0 : 0;
+	e->texv.index = e->map.map[(int)e->ray.map.y][(int)e->ray.map.x] - 1;
+	e->texv.index < 0 || e->texv.index >= e->t_nb ? e->texv.index = 0 : 0;
 	wall = e->ray.side == 1 ? e->ray.pos.x + ((e->ray.map.y - e->ray.pos.y +
 			(1 - e->ray.step.y) / 2) / e->ray.dir.y) * e->ray.dir.x :
 			e->ray.pos.y + ((e->ray.map.x - e->ray.pos.x +

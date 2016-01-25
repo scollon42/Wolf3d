@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 16:30:23 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/23 10:43:31 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/25 09:56:16 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	img_init(t_env *e)
 
 void	cam_init(t_env *e)
 {
-	e->cam.pos = vec_create(4, 1);
+	e->cam.pos = vec_create(5, 5);
 	e->cam.dir = vec_create(0, -1);
 	e->cam.pln = vec_create(1, 0);
 	e->cam.run = 0.05;
@@ -40,6 +40,17 @@ void	key_init(t_key *k)
 	k->e = 0;
 	k->run = 1;
 }
+void        init_sound(t_env *e)
+{
+	SDL_Init(SDL_INIT_AUDIO);
+	Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024);
+	if (!(e->sound.music = Mix_LoadMUS("ressources/sounds/son.mp3")))
+			quit(1, e, "Error : failed to load sounds ressources\n");
+	if (!(e->sound.fire = Mix_LoadWAV("ressources/sounds/fire.wav")))
+		quit(1, e, "Error : failed to load sounds ressources\n");
+	Mix_PlayMusic(e->sound.music, -1);
+}
+
 
 void	env_init(t_env *e)
 {
@@ -54,5 +65,6 @@ void	env_init(t_env *e)
 	cam_init(e);
 	key_init(&e->key);
 	map_init(e);
+	init_sound(e);
 	sprites_init(e);
 }

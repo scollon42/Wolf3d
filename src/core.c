@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 07:29:01 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/23 12:46:26 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/25 09:56:21 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,6 @@ void		core(t_env *e)
 	mlx_hook(e->win.adr, 2, (1L << 0), key_press, e);
 	mlx_hook(e->win.adr, 3, (1L << 1), key_release, e);
 	mlx_loop(e->mlx);
+	Mix_FreeMusic(e->sound.music);
+	Mix_CloseAudio();
 }

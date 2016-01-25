@@ -48,28 +48,28 @@ $(NAME): $(OBJ)
 	@#make -C $(LIB_PATH)libvect re
 	@#make -C $(LIB_PATH)mlx re
 	$(CC) $(CFLAGS) $(MLX) $(SDL) $(SDL_HEADER) $(LIB) $(INC_LIBFT) $(INC) $(OBJ)  -o $(NAME)
-	@#$(MAKE) check
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir $(OBJ_PATH) 2>/dev/null || echo "" > /dev/null
-	$(CC) $(CFLAGS) $(INC_LIBFT) $(SDL) $(SDL_HEADER) $(INC) -o $@ -c $<
+	$(CC) $(CFLAGS) $(INC_LIBFT) $(SDL_HEADER) $(INC) -o $@ -c $<
 
-.PHONY: clean fclean re fclean_libft clean_libft sdl_install
+.PHONY: clean fclean re mrpropper sdl_install
 
 clean:
 	rm -f $(OBJ)
 	@rmdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
 
-clean_libft:
-	make -C libft clean
 
 fclean: clean
 	rm -f $(NAME)
 
-fclean_libft:
-	make -C libft fclean
 
 re: fclean all
+
+mrpropper: fclean
+	make -C lib/libft/ fclean
+	make -C lib/libvect/ fclean
+	make -C lib/mlx/ clean
 
 sdl_install:
 	    curl https://dl.dropboxusercontent.com/u/22561204/SDL/Archive.zip > /tmp/Archive.zip

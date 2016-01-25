@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 15:52:00 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/23 12:30:23 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/25 09:56:06 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,12 @@ typedef	struct	s_ray
 	double		dist;
 }				t_ray;
 
+typedef	struct	s_snd
+{
+	Mix_Music	*music;
+	Mix_Chunk	*fire;
+}				t_snd;
+
 typedef struct	s_spr
 {
 	void		*adr;
@@ -114,6 +120,7 @@ typedef struct	s_env
 	t_map		map;
 	t_ray		ray;
 	t_spr		*spr;
+	t_snd		sound;
 }				t_env;
 
 void			quit(int error, t_env *e, char *msg);
@@ -123,6 +130,7 @@ void			img_init(t_env *e);
 void			cam_init(t_env *e);
 void			key_init(t_key *k);
 void			map_init(t_env *e);
+void			init_sound(t_env *e);
 
 void			core(t_env *e);
 

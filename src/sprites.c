@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 13:44:08 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/23 10:26:33 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/25 09:48:18 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static void	transparancy(t_spr *spr)
 		while (x < spr->w)
 		{
 			pos = ((x * spr->bpp / 8) + (y * spr->sl));
-			if (spr->spr[pos] == (char)136 && spr->spr[pos+1] == (char) 0 && spr->spr[pos + 2] == (char)152)
+			if (spr->spr[pos] == (char)136 && spr->spr[pos + 1] == (char)0
+				&& spr->spr[pos + 2] == (char)152)
 				spr->spr[pos + 3] = 255;
 			x++;
 		}
@@ -49,9 +50,10 @@ void	sprites_init(t_env *e)
 		quit(1, e, "Error : failed to load sprites\n");
 	while (get_next_line(fd, &line) > 0 && ++i < nb)
 	{
-		if (!(e->spr[i].adr = mlx_xpm_file_to_image(e->mlx, line, &e->spr[i].w, &e->spr[i].h)))
+		if (!(e->spr[i].adr = mlx_xpm_file_to_image(e->mlx, line,
+			&e->spr[i].w, &e->spr[i].h)))
 			quit(1, e, "Error : failed to load sprites\n");
-		if (!(e->spr[i].spr = mlx_get_data_addr(e->spr[i].adr,&e->spr[i].bpp,
+		if (!(e->spr[i].spr = mlx_get_data_addr(e->spr[i].adr, &e->spr[i].bpp,
 						&e->spr[i].sl, &e->spr[i].endian)))
 			quit(1, e, "Error : failed to load sprites\n");
 		ft_strdel(&line);
@@ -69,13 +71,15 @@ void	put_sprites(t_env *e)
 	if (e->cam.shoot > 0)
 		e->cam.shoot -= 1;
 	e->cam.shoot == 5 ? e->cam.shoot = 0 : 0;
+	e->cam.shoot == 1 ? Mix_PlayChannel(2, e->sound.fire, 0) : 0;
 	if (e->cam.shoot)
 	{
 		mlx_destroy_image(e->mlx, e->spr[e->cam.shoot].adr);
 		sprites_init(e);
 	}
 	mlx_put_image_to_window(e->mlx, e->win.adr, e->spr[e->cam.shoot].adr,
-			e->win.w / 2 - e->spr[e->cam.shoot].w, e->win.h - e->spr[e->cam.shoot].h);
+							e->win.w / 2 - e->spr[e->cam.shoot].w / 2,
+							e->win.h - e->spr[e->cam.shoot].h);
 	if (e->cam.shoot > 0)
 		e->cam.shoot += 1;
 }

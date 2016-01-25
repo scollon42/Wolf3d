@@ -6,13 +6,13 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 07:48:40 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/23 07:50:14 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/25 09:53:36 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wlf3d.h"
 
-int         rgb_to_hex(int r, int g, int b)
+int		rgb_to_hex(int r, int g, int b)
 {
 	int color;
 
@@ -22,9 +22,9 @@ int         rgb_to_hex(int r, int g, int b)
 	return (color);
 }
 
-void        img_pixel_put(t_env *e, int x, int y, int color)
+void	img_pixel_put(t_env *e, int x, int y, int color)
 {
-	int     pos;
+	int	pos;
 
 	if (x >= 0 && x < e->win.w && y >= 0 && y < e->win.h)
 	{

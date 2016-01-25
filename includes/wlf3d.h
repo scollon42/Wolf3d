@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 15:52:00 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/25 11:51:20 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/25 15:34:11 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef	struct	s_ray
 	int			side;
 	int			hit;
 	int			wallc;
+	int			x;
 	float		cam;
 	double		dist;
 }				t_ray;
@@ -108,6 +109,13 @@ typedef struct	s_spr
 	t_vectI		pos;
 }				t_spr;
 
+typedef struct	s_tex
+{
+	t_vectI		tex;
+	int			index;
+	int			color;
+}				t_tex;
+
 typedef struct	s_env
 {
 	t_arg		arg;
@@ -121,6 +129,7 @@ typedef struct	s_env
 	t_ray		ray;
 	t_spr		*spr;
 	t_spr		*tex;
+	t_tex		texv;
 	int			s_nb;
 	int			t_nb;
 	t_snd		sound;
@@ -155,5 +164,7 @@ void			raycast_calc(t_env *e);
 void			raycast_cast(t_env *e);
 void			raycast_dist(t_env *e);
 void			raycast_draw(t_env *e, int x);
+void    		raycast_tx(t_env *e, int ds, int de, int hl);
+void			raycast_tx_draw(t_env *e, int ds, int de, int hl);
 
 #endif

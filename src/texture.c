@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 11:19:45 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/25 11:53:49 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/25 16:08:15 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,15 @@
 
 void	texture_init(t_env *e)
 {
-
-	int     i;
-	int     fd;
-	char    *line;
+	int		i;
+	int		fd;
+	char	*line;
 
 	i = -1;
 	if ((fd = open("./resources/texture.path", O_RDONLY)) == -1)
 		quit(1, e, "Error : texture.path file doesn't exist\n");
 	get_next_line(fd, &line);
-	!(e->t_nb = ft_atoi(line)) ? quit(1, e, "Error : can't load textures\n") : 0;
+	!(e->t_nb = ft_atoi(line)) ? quit(1, e, "Error : ivalid textures\n") : 0;
 	ft_strdel(&line);
 	if (!(e->tex = (t_spr*)malloc(sizeof(t_spr) * e->t_nb)))
 		quit(1, e, "Error : can't load textures\n");

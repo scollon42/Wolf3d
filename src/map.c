@@ -6,31 +6,11 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 07:50:25 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/23 09:13:31 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/25 16:09:41 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wlf3d.h"
-
-static void	print_map(t_map map)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	while (i < map.size)
-	{
-		j = 0;
-		while (j < map.size)
-		{
-			ft_putnbr(map.map[i][j]);
-			ft_putchar(' ');
-			j++;
-		}
-		ft_putchar('\n');
-		i++;
-	}
-}
 
 static int	*fill_map(t_env *e, char **line)
 {
@@ -75,5 +55,4 @@ void		map_init(t_env *e)
 	ft_strdel(&line);
 	if ((close(e->arg.fd)) == -1)
 		quit(1, e, "Error : close() failed\n");
-	//print_map(e->map);
 }

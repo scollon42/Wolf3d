@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 16:30:23 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/25 11:51:49 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/25 16:09:10 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	img_init(t_env *e)
 	if (!(e->img.adr = mlx_new_image(e->mlx, e->win.w, e->win.h)))
 		quit(1, e, "Error : mlx failed to create image");
 	if (!(e->img.img = mlx_get_data_addr(e->img.adr, &e->img.bpp,
-		&e->img.sl, &e->img.endian)))
+					&e->img.sl, &e->img.endian)))
 		quit(1, e, "Error : mlx failed to create image");
 }
 
@@ -40,12 +40,13 @@ void	key_init(t_key *k)
 	k->e = 0;
 	k->run = 1;
 }
-void        init_sound(t_env *e)
+
+void	init_sound(t_env *e)
 {
 	SDL_Init(SDL_INIT_AUDIO);
 	Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024);
 	if (!(e->sound.music = Mix_LoadMUS("resources/sounds/son.mp3")))
-			quit(1, e, "Error : failed to load sounds resources\n");
+		quit(1, e, "Error : failed to load sounds resources\n");
 	if (!(e->sound.fire = Mix_LoadWAV("resources/sounds/fire.wav")))
 		quit(1, e, "Error : failed to load sounds resources\n");
 	if (!(e->sound.run = Mix_LoadWAV("resources/sounds/run.wav")))
@@ -54,7 +55,6 @@ void        init_sound(t_env *e)
 		quit(1, e, "Error : failed to load sounds resources\n");
 	Mix_PlayMusic(e->sound.music, -1);
 }
-
 
 void	env_init(t_env *e)
 {

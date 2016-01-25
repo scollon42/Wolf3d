@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 13:44:08 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/25 09:48:18 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/25 11:19:35 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,14 @@ void	sprites_init(t_env *e)
 	char	*line;
 
 	i = -1;
-	if ((fd = open("weapon.path", O_RDONLY)) == -1)
+	if ((fd = open("./resources/weapon.path", O_RDONLY)) == -1)
 		quit(1, e, "Error : weapon.path file doesn't exist\n");
 	get_next_line(fd, &line);
 	!(nb = ft_atoi(line)) ? quit(1, e, "Error : failed to load sprites\n") : 0;
+	ft_strdel(&line);
 	if (!(e->spr = (t_spr*)malloc(sizeof(t_spr) * nb)))
 		quit(1, e, "Error : failed to load sprites\n");
-	while (get_next_line(fd, &line) > 0 && ++i < nb)
+	while (get_next_line(fd, &line) > 0 && ++i <= nb)
 	{
 		if (!(e->spr[i].adr = mlx_xpm_file_to_image(e->mlx, line,
 			&e->spr[i].w, &e->spr[i].h)))

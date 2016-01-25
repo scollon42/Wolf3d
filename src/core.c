@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 07:29:01 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/25 09:56:21 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/25 11:16:31 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ static int	move(t_env *e)
 	e->key.d ? rot = 2.5 : 0;
 	vec_rotate(&e->cam.dir, rot);
 	vec_rotate(&e->cam.pln, rot);
+	if (e->key.w || e->key.s)
+		Mix_Resume(3);
+	else
+		Mix_Pause(3);
 	e->cam.pos = e->map.map[(int)tmp.y][(int)tmp.x] == 0 ? tmp : e->cam.pos;
 	e->cam.shoot > 0 ? e->cam.shoot++ : 0;
 	e->cam.run = e->key.run == 1 ? 0.05 : 0.02;
@@ -59,6 +63,8 @@ int			mouse_event(int btn, int x, int y, t_env *e)
 
 void		core(t_env *e)
 {
+	Mix_PlayChannel(3, e->sound.run, -1);
+	Mix_Pause(3);
 	mlx_expose_hook(e->win.adr, expose_hook, e);
 	mlx_loop_hook(e->mlx, move, e);
 	mlx_mouse_hook(e->win.adr, mouse_event, e);

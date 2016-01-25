@@ -31,23 +31,29 @@ CC 					= gcc
 CFGLAGS 			= -Werror -Wextra -Wall
 
 SRC_NAME 			= main.c env.c core.c render.c event.c \
-					  map.c sprites.c utils.c quit.c
+					  map.c sprites.c raycast.c raycast_text.c \
+					  texture.c utils.c quit.c
 OBJ_NAME 			= $(SRC_NAME:.c=.o)
 LIB_NAME 			= libft/libft.a libvect/libvect.a
 
-SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
-OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
-INC = $(addprefix -I,$(INC_PATH))
-INC_LIBFT = $(addprefix -I,$(INC_LIBFT_PATH))
-LIB = $(addprefix $(LIB_PATH),$(LIB_NAME))
+SRC 				= $(addprefix $(SRC_PATH), $(SRC_NAME))
+OBJ 				= $(addprefix $(OBJ_PATH), $(OBJ_NAME))
+INC 				= $(addprefix -I,$(INC_PATH))
+INC_LIBFT 			= $(addprefix -I,$(INC_LIBFT_PATH))
+LIB 				= $(addprefix $(LIB_PATH),$(LIB_NAME))
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@#make -C $(LIB_PATH)libft re
-	@#make -C $(LIB_PATH)libvect re
-	@#make -C $(LIB_PATH)mlx re
+	@make -C $(LIB_PATH)libft re
+	@make -C $(LIB_PATH)libvect re
+	@make -C $(LIB_PATH)mlx re
 	$(CC) $(CFLAGS) $(MLX) $(SDL) $(SDL_HEADER) $(LIB) $(INC_LIBFT) $(INC) $(OBJ)  -o $(NAME)
+
+nl: fclean $(OBJ)
+	$(CC) $(CFLAGS) $(MLX) $(SDL) $(SDL_HEADER) $(LIB) $(INC_LIBFT) $(INC) $(OBJ)  -o $(NAME)
+
+
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir $(OBJ_PATH) 2>/dev/null || echo "" > /dev/null

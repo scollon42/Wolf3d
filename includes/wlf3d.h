@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 15:52:00 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/25 09:56:06 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/25 11:27:26 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # include <mlx.h>
 # include <SDL.h>
 # include <SDL_mixer.h>
-
-# include <stdio.h> // tmp .h
 
 typedef	struct	s_arg
 {
@@ -93,6 +91,8 @@ typedef	struct	s_snd
 {
 	Mix_Music	*music;
 	Mix_Chunk	*fire;
+	Mix_Chunk	*run;
+	Mix_Chunk	*walk;
 }				t_snd;
 
 typedef struct	s_spr
@@ -120,6 +120,7 @@ typedef struct	s_env
 	t_map		map;
 	t_ray		ray;
 	t_spr		*spr;
+	t_spr		*tex;
 	t_snd		sound;
 }				t_env;
 
@@ -145,5 +146,11 @@ int				key_release(int kc, t_env *e);
 
 void			sprites_init(t_env *e);
 void			put_sprites(t_env *e);
+
+void			raycast_init(t_env *e, int x);
+void			raycast_calc(t_env *e);
+void			raycast_cast(t_env *e);
+void			raycast_dist(t_env *e);
+void			raycast_draw(t_env *e, int x);
 
 #endif

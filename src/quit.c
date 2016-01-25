@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 16:09:16 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/25 09:38:20 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/25 10:47:07 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void		quit(int error, t_env *e, char *msg)
 		destroy_map(&e->map);
 		e->sound.music != NULL ? Mix_FreeMusic(e->sound.music) : 0;
 		e->sound.fire != NULL ? Mix_FreeChunk(e->sound.fire) : 0;
+		Mix_CloseAudio();
 		ft_memdel((void**)&e);
 	}
 	if (msg != NULL)

@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 16:30:23 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/25 09:56:16 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/25 11:16:08 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,14 @@ void        init_sound(t_env *e)
 {
 	SDL_Init(SDL_INIT_AUDIO);
 	Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024);
-	if (!(e->sound.music = Mix_LoadMUS("ressources/sounds/son.mp3")))
-			quit(1, e, "Error : failed to load sounds ressources\n");
-	if (!(e->sound.fire = Mix_LoadWAV("ressources/sounds/fire.wav")))
-		quit(1, e, "Error : failed to load sounds ressources\n");
+	if (!(e->sound.music = Mix_LoadMUS("resources/sounds/son.mp3")))
+			quit(1, e, "Error : failed to load sounds resources\n");
+	if (!(e->sound.fire = Mix_LoadWAV("resources/sounds/fire.wav")))
+		quit(1, e, "Error : failed to load sounds resources\n");
+	if (!(e->sound.run = Mix_LoadWAV("resources/sounds/run.wav")))
+		quit(1, e, "Error : failed to load sounds resources\n");
+	if (!(e->sound.walk = Mix_LoadWAV("resources/sounds/walk.wav")))
+		quit(1, e, "Error : failed to load sounds resources\n");
 	Mix_PlayMusic(e->sound.music, -1);
 }
 

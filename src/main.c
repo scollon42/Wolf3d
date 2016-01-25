@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 16:01:47 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/23 11:36:01 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/25 11:15:38 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	read_arg(t_env *e, int ac, char **av)
 		if (ft_strcmp(av[i], "-h") == 0)
 			e->arg.h = ft_atoi(av[i + 1]);
 	}
-	e->arg.map == NULL ? e->arg.map = ft_strdup("./ressources/map.wf") : 0;
+	e->arg.map == NULL ? e->arg.map = ft_strdup("./resources/map.wf") : 0;
 	e->arg.w == 0 ? e->arg.w = 800 : 0;
 	e->arg.h == 0 ? e->arg.h = 800 : 0;
 	if ((e->arg.fd = open(e->arg.map, O_RDWR)) == -1)

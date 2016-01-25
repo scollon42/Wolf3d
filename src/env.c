@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 16:30:23 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/25 16:09:10 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/25 16:28:05 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	init_sound(t_env *e)
 {
 	SDL_Init(SDL_INIT_AUDIO);
 	Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024);
+	Mix_AllocateChannels(3);
 	if (!(e->sound.music = Mix_LoadMUS("resources/sounds/son.mp3")))
 		quit(1, e, "Error : failed to load sounds resources\n");
 	if (!(e->sound.fire = Mix_LoadWAV("resources/sounds/fire.wav")))

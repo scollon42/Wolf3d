@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 11:19:45 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/25 16:08:15 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/25 16:24:05 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,7 @@ void	texture_destroy(t_env *e)
 
 	i = -1;
 	while (++i < e->t_nb)
-	{
 		mlx_destroy_image(e->mlx, e->tex[i].adr);
-		free(&e->tex[i]);
-	}
 	free(e->tex);
 	e->tex = NULL;
 }

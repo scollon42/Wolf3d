@@ -6,11 +6,31 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 07:50:25 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/25 16:09:41 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/25 16:18:40 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wlf3d.h"
+
+static void	map_correction(t_map *map)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	j = -1;
+	while (++j < map->size && ++i < map->size)
+	{
+		if (map->map[j][0] == 0)
+			map->map[j][0] = 1;
+		if (map->map[j][map->size - 1] == 0)
+			map->map[j][map->size - 1] = 1;
+		if (map->map[0][i] == 0)
+			map->map[0][i] = 1;
+		if (map->map[map->size - 1][i] == 0)
+			map->map[map->size - 1][i] = 1;
+	}
+}
 
 static int	*fill_map(t_env *e, char **line)
 {
@@ -55,4 +75,5 @@ void		map_init(t_env *e)
 	ft_strdel(&line);
 	if ((close(e->arg.fd)) == -1)
 		quit(1, e, "Error : close() failed\n");
+	map_correction(&e->map);
 }

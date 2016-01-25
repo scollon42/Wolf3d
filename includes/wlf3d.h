@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 15:52:00 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/25 15:34:11 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/25 16:21:22 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,13 @@ void			cam_init(t_env *e);
 void			key_init(t_key *k);
 void			map_init(t_env *e);
 void			init_sound(t_env *e);
+
 void			texture_init(t_env *e);
+void			texture_destroy(t_env *e);
+
+void			sprites_init(t_env *e);
+void			put_sprites(t_env *e);
+void			sprites_destroy(t_env *e);
 
 void			core(t_env *e);
 
@@ -155,9 +161,6 @@ int				rgb_to_hex(int r, int g, int b);
 int				mouse_pos(int x, int y, t_env *e);
 int				key_press(int kc, t_env *e);
 int				key_release(int kc, t_env *e);
-
-void			sprites_init(t_env *e);
-void			put_sprites(t_env *e);
 
 void			raycast_init(t_env *e, int x);
 void			raycast_calc(t_env *e);

@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 13:44:08 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/25 11:54:39 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/25 16:30:04 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,7 @@ void		sprites_destroy(t_env *e)
 
 	i = -1;
 	while (++i < e->s_nb)
-	{
 		mlx_destroy_image(e->mlx, e->spr[i].adr);
-		free(&e->spr[i]);
-	}
 	free(e->spr);
 	e->spr = NULL;
 }
@@ -88,7 +85,7 @@ void	put_sprites(t_env *e)
 	e->cam.shoot == 1 ? Mix_PlayChannel(2, e->sound.fire, 0) : 0;
 	if (e->cam.shoot)
 	{
-		mlx_destroy_image(e->mlx, e->spr[e->cam.shoot].adr);
+		sprites_destroy(e);
 		sprites_init(e);
 	}
 	mlx_put_image_to_window(e->mlx, e->win.adr, e->spr[e->cam.shoot].adr,

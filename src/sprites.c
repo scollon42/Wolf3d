@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 13:44:08 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/25 11:19:35 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/25 11:54:39 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,35 @@ static void	transparancy(t_spr *spr)
 	}
 }
 
+void		sprites_destroy(t_env *e)
+{
+	int		i;
+
+	i = -1;
+	while (++i < e->s_nb)
+	{
+		mlx_destroy_image(e->mlx, e->spr[i].adr);
+		free(&e->spr[i]);
+	}
+	free(e->spr);
+	e->spr = NULL;
+}
+
 void	sprites_init(t_env *e)
 {
 	int		i;
 	int		fd;
-	int		nb;
 	char	*line;
 
 	i = -1;
 	if ((fd = open("./resources/weapon.path", O_RDONLY)) == -1)
 		quit(1, e, "Error : weapon.path file doesn't exist\n");
 	get_next_line(fd, &line);
-	!(nb = ft_atoi(line)) ? quit(1, e, "Error : failed to load sprites\n") : 0;
+	!(e->s_nb = ft_atoi(line)) ? quit(1, e, "Error : can't loadsprites\n") : 0;
 	ft_strdel(&line);
-	if (!(e->spr = (t_spr*)malloc(sizeof(t_spr) * nb)))
+	if (!(e->spr = (t_spr*)malloc(sizeof(t_spr) * e->s_nb)))
 		quit(1, e, "Error : failed to load sprites\n");
-	while (get_next_line(fd, &line) > 0 && ++i <= nb)
+	while (get_next_line(fd, &line) > 0 && ++i <= e->s_nb)
 	{
 		if (!(e->spr[i].adr = mlx_xpm_file_to_image(e->mlx, line,
 			&e->spr[i].w, &e->spr[i].h)))

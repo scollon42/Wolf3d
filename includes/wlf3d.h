@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 15:52:00 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/25 11:27:26 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/25 11:51:20 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,8 @@ typedef struct	s_env
 	t_ray		ray;
 	t_spr		*spr;
 	t_spr		*tex;
+	int			s_nb;
+	int			t_nb;
 	t_snd		sound;
 }				t_env;
 
@@ -132,6 +134,7 @@ void			cam_init(t_env *e);
 void			key_init(t_key *k);
 void			map_init(t_env *e);
 void			init_sound(t_env *e);
+void			texture_init(t_env *e);
 
 void			core(t_env *e);
 

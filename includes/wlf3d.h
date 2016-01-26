@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 15:52:00 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/25 16:21:22 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/26 09:10:07 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 # include <mlx.h>
 # include <SDL.h>
 # include <SDL_mixer.h>
+
+typedef struct	s_dv
+{
+	double x;
+	double y;
+}				t_dv;
 
 typedef	struct	s_arg
 {
@@ -63,6 +69,7 @@ typedef	struct	s_key
 	int			d;
 	int			q;
 	int			e;
+	int			r;
 	int			run;
 }				t_key;
 
@@ -92,6 +99,8 @@ typedef	struct	s_snd
 {
 	Mix_Music	*music;
 	Mix_Chunk	*fire;
+	Mix_Chunk	*empty;
+	Mix_Chunk	*reload;
 	Mix_Chunk	*run;
 	Mix_Chunk	*walk;
 }				t_snd;
@@ -103,6 +112,7 @@ typedef struct	s_spr
 	int			w;
 	int			h;
 	int			bpp;
+	int			opp;
 	int			sl;
 	int			endian;
 	int			index;
@@ -111,10 +121,19 @@ typedef struct	s_spr
 
 typedef struct	s_tex
 {
+	t_spr		*img;
 	t_vectI		tex;
 	int			index;
 	int			color;
+	double		wall;
 }				t_tex;
+
+typedef struct	s_ply
+{
+	int			hp;
+	int			wp;
+	int			am;
+}				t_ply;
 
 typedef struct	s_env
 {
@@ -123,13 +142,13 @@ typedef struct	s_env
 	t_win		win;
 	t_img		img;
 	t_cam		cam;
+	t_ply		player;
 	t_key		key;
 	t_vectI		mse;
 	t_map		map;
 	t_ray		ray;
 	t_spr		*spr;
-	t_spr		*tex;
-	t_tex		texv;
+	t_tex		tex;
 	int			s_nb;
 	int			t_nb;
 	t_snd		sound;
@@ -152,6 +171,8 @@ void			put_sprites(t_env *e);
 void			sprites_destroy(t_env *e);
 
 void			core(t_env *e);
+int				action(t_env *e);
+int				expose_hook(t_env *e);
 
 void			render(t_env *e);
 

@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 11:20:04 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/25 15:34:51 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/26 09:23:00 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,6 @@ void	raycast_cast(t_env *e)
 			e->ray.map.y += e->ray.step.y;
 			e->ray.side = 1;
 		}
-		if (e->ray.map.x > e->map.size - 1 || e->ray.map.y > e->map.size - 1 ||
-				e->ray.map.x < 0 || e->ray.map.y < 0)
-			break ;
 		if (e->map.map[e->ray.map.y][e->ray.map.x] > 0)
 			e->ray.hit = 1;
 	}
@@ -100,14 +97,14 @@ void	raycast_draw(t_env *e, int x)
 	de >= e->win.h ? de = e->win.h - 1 : 0;
 	color = 210 - e->ray.dist * 8.0;
 	color < 0 ? color = 0 : 0;
-	raycast_tx(e, ds, de, hl);
-/*	while (++ds < de)
+	//raycast_tx(e, ds, de, hl);
+	while (++ds < de)
 	{
 		if (e->ray.side == 1)
 			img_pixel_put(e, x, ds, rgb_to_hex(color + 30, color + 30, color + 30));
 		else
 			img_pixel_put(e, x, ds, rgb_to_hex(color, color, color));
-	}*/
+	}
 	de = de < 0 ? e->win.h - 1 : de - 1;
 	while (++de < e->win.h)
 	{

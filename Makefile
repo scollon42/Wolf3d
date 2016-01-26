@@ -30,7 +30,7 @@ NAME				= wolf3d
 CC 					= gcc
 CFGLAGS 			= -Werror -Wextra -Wall
 
-SRC_NAME 			= main.c env.c core.c render.c event.c \
+SRC_NAME 			= main.c env.c core.c action.c render.c event.c \
 					  map.c sprites.c raycast.c raycast_text.c \
 					  texture.c utils.c quit.c
 OBJ_NAME 			= $(SRC_NAME:.c=.o)

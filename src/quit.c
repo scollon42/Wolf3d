@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 16:09:16 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/25 16:22:53 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/26 07:43:18 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void		quit(int error, t_env *e, char *msg)
 		e->win.adr != NULL ? mlx_destroy_window(e->mlx, e->win.adr) : 0;
 		ft_strdel(&e->arg.map);
 		destroy_map(&e->map);
-		e->tex != NULL ? texture_destroy(e) : 0;
+		e->tex.img != NULL ? texture_destroy(e) : 0;
 		e->spr != NULL ? sprites_destroy(e) : 0;
 		e->sound.music != NULL ? Mix_FreeMusic(e->sound.music) : 0;
 		e->sound.fire != NULL ? Mix_FreeChunk(e->sound.fire) : 0;

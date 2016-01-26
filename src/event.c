@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 07:38:13 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/25 10:55:02 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/26 09:09:12 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	key_press(int kc, t_env *e)
 	kc == 2 || kc == 124 ? e->key.d = 1 : 0;
 	kc == 12 ? e->key.q = 1 : 0;
 	kc == 14 ? e->key.e = 1 : 0;
+	kc == 15 ? e->key.r = 1 : 0;
 	if (kc == 257 && e->key.run == 1)
 	{
 		Mix_PlayChannel(3, e->sound.walk, -1);

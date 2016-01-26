@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 16:30:23 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/25 16:28:05 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/26 09:10:37 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,14 @@ void	init_sound(t_env *e)
 {
 	SDL_Init(SDL_INIT_AUDIO);
 	Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024);
-	Mix_AllocateChannels(3);
+	Mix_AllocateChannels(4);
 	if (!(e->sound.music = Mix_LoadMUS("resources/sounds/son.mp3")))
 		quit(1, e, "Error : failed to load sounds resources\n");
 	if (!(e->sound.fire = Mix_LoadWAV("resources/sounds/fire.wav")))
+		quit(1, e, "Error : failed to load sounds resources\n");
+	if (!(e->sound.reload = Mix_LoadWAV("resources/sounds/reload.wav")))
+		quit(1, e, "Error : failed to load sounds resources\n");
+	if (!(e->sound.empty = Mix_LoadWAV("resources/sounds/empty.wav")))
 		quit(1, e, "Error : failed to load sounds resources\n");
 	if (!(e->sound.run = Mix_LoadWAV("resources/sounds/run.wav")))
 		quit(1, e, "Error : failed to load sounds resources\n");
@@ -68,6 +72,9 @@ void	env_init(t_env *e)
 		quit(1, e, "Error : mlx failed to create window\n");
 	img_init(e);
 	cam_init(e);
+	e->player.hp = 100;
+	e->player.wp = 0;
+	e->player.am = 10;
 	key_init(&e->key);
 	map_init(e);
 	init_sound(e);

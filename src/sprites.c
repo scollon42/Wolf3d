@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 13:44:08 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/25 17:00:12 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/26 08:12:38 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void	put_sprites(t_env *e)
 	if (e->cam.shoot > 0)
 		e->cam.shoot -= 1;
 	e->cam.shoot == 5 ? e->cam.shoot = 0 : 0;
-	e->cam.shoot == 1 ? Mix_PlayChannel(2, e->sound.fire, 0) : 0;
 	if (e->cam.shoot)
 	{
 		sprites_destroy(e);

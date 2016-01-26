@@ -1,6 +1,6 @@
 5
-./resources/texture/wall.xpm
-./resources/texture/wall3.xpm
-./resources/texture/glass.xpm
-./resources/texture/wall.xpm
-./resources/texture/wall.xpm
+./resources/texture/wall/stonebrick.XPM
+./resources/texture/wall/stonebrick_mossy.XPM
+./resources/texture/wall/planks_birch.XPM
+./resources/texture/wall/tnt_side.XPM
+./resources/texture/wall/bookshelf.XPM

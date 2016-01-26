@@ -6,11 +6,25 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 07:29:01 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/26 08:03:45 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/26 17:07:45 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wlf3d.h"
+
+static void	aff_menu(t_env *e)
+{
+	char	*am;
+	char	*hp;
+
+	am = ft_itoa(e->player.am);
+	hp = ft_itoa(e->player.hp);
+	mlx_put_image_to_window(e->mlx, e->win.adr, e->player.f.adr, -1, 0);
+	mlx_string_put(e->mlx, e->win.adr, e->player.f.w + 10, 10, 0xff0000, hp);
+	mlx_string_put(e->mlx, e->win.adr, e->player.f.w + 10, 30, 0xff0000, am);
+	ft_strdel(&am);
+	ft_strdel(&hp);
+}
 
 int			expose_hook(t_env *e)
 {
@@ -20,6 +34,7 @@ int			expose_hook(t_env *e)
 	render(e);
 	mlx_put_image_to_window(e->mlx, e->win.adr, e->img.adr, 0, 0);
 	put_sprites(e);
+	aff_menu(e);
 	return (0);
 }
 

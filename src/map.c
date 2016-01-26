@@ -6,11 +6,47 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 07:50:25 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/25 16:18:40 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/26 15:40:58 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wlf3d.h"
+
+void		map_destroy(t_map *map)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < map->size)
+	{
+		map->map[i] == NULL ? ft_memdel((void**)&map->map[i]) : 0;
+		i++;
+	}
+	free(map->map);
+	map->map = NULL;
+}
+
+t_vect		find_empty_pos(t_env *e)
+{
+	int			i;
+	int			j;
+	t_vect		pos;
+
+	j = 1;
+	i = 1;
+	pos.x = 0;
+	pos.y = 0;
+	while (j < e->map.size)
+	{
+		i == e->map.size ? j++ : 0;
+		i == e->map.size ? i = 0 : 0;
+		if (e->map.map[j][i] == 0)
+			return (vec_create(j + 0.5, i + 0.5));
+		i++;
+	}
+	quit(1, e, "No place for player position\n");
+	return (pos);
+}
 
 static void	map_correction(t_map *map)
 {
@@ -39,17 +75,22 @@ static int	*fill_map(t_env *e, char **line)
 	char	**tab;
 
 	i = 0;
+	if (get_next_line(e->arg.fd, line) == 0)
+	{
+		e->map.size = 0;
+		quit(1, e, "Invalid map file\n");
+	}
 	if (!(map = (int*)malloc(sizeof(int) * e->map.size)))
-		quit(1, e, "Error : failed to load map\n");
-	get_next_line(e->arg.fd, line);
+		quit(1, e, "Failed to load map\n");
 	tab = ft_strsplit(*line, ' ');
 	while (tab[i] != NULL)
 	{
-		if ((map[i] = ft_atoi(tab[i])) > 9)
-			quit(1, e, "Error : invalid map file\n");
+		if ((map[i] = ft_atoi(tab[i])) > e->t_nb)
+			quit(1, e, "Invalid map file\n");
 		ft_strdel(&tab[i]);
 		i++;
 	}
+	i != e->map.size ? quit(1, e, "Invalid map file\n") : 0;
 	free(tab);
 	tab = NULL;
 	return (map);
@@ -62,11 +103,11 @@ void		map_init(t_env *e)
 
 	i = 0;
 	get_next_line(e->arg.fd, &line);
-	if ((e->map.size = ft_atoi(line)) == 0)
-		quit(1, e, "Error : failed to parse map file\n");
+	if ((e->map.size = ft_atoi(line)) < 3)
+		quit(1, e, "Failed to parse map file\n");
 	free(line);
 	if (!(e->map.map = (int**)malloc(sizeof(int*) * e->map.size)))
-		quit(1, e, "Error : failed to load map\n");
+		quit(1, e, "Failed to load map\n");
 	while (i < e->map.size)
 	{
 		e->map.map[i++] = fill_map(e, &line);
@@ -74,6 +115,6 @@ void		map_init(t_env *e)
 	}
 	ft_strdel(&line);
 	if ((close(e->arg.fd)) == -1)
-		quit(1, e, "Error : close() failed\n");
+		quit(1, e, "Close() failed\n");
 	map_correction(&e->map);
 }

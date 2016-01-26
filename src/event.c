@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 07:38:13 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/26 09:09:12 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/26 16:52:15 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ int	key_press(int kc, t_env *e)
 	}
 	if (kc == 49)
 		e->cam.shoot = 1;
+	if (kc == 17 && e->tex.on == 0)
+		e->tex.on = 1;
+	else if (kc == 17)
+		e->tex.on = 0;
 	return (1);
 }
 

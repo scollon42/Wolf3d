@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 16:01:47 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/25 16:59:44 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/26 11:33:24 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	read_arg(t_env *e, int ac, char **av)
 		if (ft_strcmp(av[i], "-h") == 0)
 			e->arg.h = ft_atoi(av[i + 1]);
 	}
-	e->arg.map == NULL ? e->arg.map = ft_strdup("./resources/map.wf") : 0;
+	e->arg.map == NULL ? e->arg.map = ft_strdup("./resources/map/map.wf") : 0;
 	e->arg.w == 0 ? e->arg.w = 800 : 0;
 	e->arg.h == 0 ? e->arg.h = 800 : 0;
 	if ((e->arg.fd = open(e->arg.map, O_RDWR)) == -1)
@@ -49,7 +49,6 @@ int			main(int ac, char **av)
 {
 	t_env	*e;
 
-	system("clear"); // tmp
 	if (!(e = (t_env *)malloc(sizeof(t_env))))
 		quit(1, NULL, "Error : environnement can't be create\n");
 	read_arg(e, ac, av);

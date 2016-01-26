@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 15:52:00 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/26 09:10:07 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/26 16:50:13 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,6 @@
 # include <mlx.h>
 # include <SDL.h>
 # include <SDL_mixer.h>
-
-typedef struct	s_dv
-{
-	double x;
-	double y;
-}				t_dv;
 
 typedef	struct	s_arg
 {
@@ -125,11 +119,13 @@ typedef struct	s_tex
 	t_vectI		tex;
 	int			index;
 	int			color;
+	int			on;
 	double		wall;
 }				t_tex;
 
 typedef struct	s_ply
 {
+	t_spr		f;
 	int			hp;
 	int			wp;
 	int			am;
@@ -191,4 +187,6 @@ void			raycast_draw(t_env *e, int x);
 void    		raycast_tx(t_env *e, int ds, int de, int hl);
 void			raycast_tx_draw(t_env *e, int ds, int de, int hl);
 
+t_vect     		 find_empty_pos(t_env *e);
+void    		map_destroy(t_map *map);
 #endif

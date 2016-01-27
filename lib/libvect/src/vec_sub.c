@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 08:19:17 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/21 08:19:22 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 15:59:09 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_vect	vec_sub(const t_vect va, const t_vect vb)
 {
-	t_vect  r;
+	t_vect	r;
 
 	r.x = va.x - vb.x;
 	r.y = va.y - vb.y;

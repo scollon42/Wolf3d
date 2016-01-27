@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 11:20:20 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/27 10:11:27 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 15:21:57 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,10 @@ static void	floor_draw(t_env *e, int de)
 	int		pos;
 
 	y = de;
-	e->flo.distW = e->ray.dist;
 	while (++y < e->win.h)
 	{
 		e->flo.dist = e->win.h / (2.0 * y - e->win.h);
-		e->flo.wei = e->flo.dist / e->flo.distW;
+		e->flo.wei = e->flo.dist / e->ray.dist;
 		e->flo.cur.x = e->flo.wei * e->flo.wall.x +
 			(1.0 - e->flo.wei) * e->cam.pos.x;
 		e->flo.cur.y = e->flo.wei * e->flo.wall.y +
@@ -71,7 +70,7 @@ void		raycast_tx(t_env *e, int ds, int de, int hl)
 	while (++y < de)
 	{
 		e->tex.tex.y = (y * 2 - e->win.h + hl) *
-			(e->tex.img[e->tex.index].h / 2) / hl;
+			(e->tex.img[e->tex.index].h2) / hl;
 		pos = (e->tex.tex.x * e->tex.img[e->tex.index].opp)
 			+ (e->tex.tex.y * e->tex.img[e->tex.index].sl);
 		e->tex.color = e->tex.img[e->tex.index].spr[pos];

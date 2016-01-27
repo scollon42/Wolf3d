@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/26 07:52:47 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/26 16:21:58 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 15:51:35 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,28 @@ static void		weapon(t_env *e)
 	}
 }
 
-static void		move(t_env *e)
+static void		rotate(t_env *e)
 {
 	float	rot;
+
+	e->key.a ? rot = 3.5 : 0;
+	e->key.d ? rot = -3.5 : 0;
+	if (e->key.a)
+	{
+		e->skb.pos.x -= 28;
+		e->skb.pos.x < 0 ? e->skb.pos.x = 0 : 0;
+	}
+	else if (e->key.d)
+	{
+		e->skb.pos.x += 28;
+		e->skb.pos.x > e->skb.w ? e->skb.pos.x = 10 : 0;
+	}
+	vec_rotate(&e->cam.dir, rot);
+	vec_rotate(&e->cam.pln, rot);
+}
+
+static void		move(t_env *e)
+{
 	t_vect	tmp;
 	t_vect	dir;
 	t_vect	pln;
@@ -58,10 +77,7 @@ static void		move(t_env *e)
 		tmp = e->key.q == 1 ? vec_sub(e->cam.pos, pln) : tmp;
 		e->cam.pos = e->map.map[(int)tmp.y][(int)tmp.x] == 0 ? tmp : e->cam.pos;
 	}
-	e->key.a ? rot = 3.5 : 0;
-	e->key.d ? rot = -3.5 : 0;
-	vec_rotate(&e->cam.dir, rot);
-	vec_rotate(&e->cam.pln, rot);
+	e->key.a || e->key.d ? rotate(e) : 0;
 	Mix_Resume(3);
 }
 

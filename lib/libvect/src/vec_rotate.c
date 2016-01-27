@@ -6,15 +6,15 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 08:18:44 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/21 08:28:55 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 15:57:42 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libvect.h"
 
-void    vec_rotate(t_vect *v, float theta)
+void	vec_rotate(t_vect *v, float theta)
 {
-	t_vect  t;
+	t_vect	t;
 
 	theta *= D2R;
 	t.x = v->x * cos(theta) + v->y * -sin(theta);

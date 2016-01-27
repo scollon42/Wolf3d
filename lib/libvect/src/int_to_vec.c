@@ -6,11 +6,11 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 08:17:55 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/21 08:17:58 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 16:00:35 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
- #include "libvect.h"
+#include "libvect.h"
 
 t_vect	int_to_vec(const t_vectI i)
 {

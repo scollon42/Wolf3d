@@ -6,18 +6,11 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 07:38:13 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/26 16:52:15 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 15:43:08 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wlf3d.h"
-
-int	mouse_pos(int x, int y, t_env *e)
-{
-	e->mse.x = x;
-	e->mse.y = y;
-	return (1);
-}
 
 int	key_press(int kc, t_env *e)
 {
@@ -29,6 +22,11 @@ int	key_press(int kc, t_env *e)
 	kc == 12 ? e->key.q = 1 : 0;
 	kc == 14 ? e->key.e = 1 : 0;
 	kc == 15 ? e->key.r = 1 : 0;
+	kc == 49 ? e->cam.shoot = 1 : 0;
+	kc == 17 && e->tex.on == 0 ? e->tex.on = 2 : 0;
+	kc == 17 && e->tex.on == 1 ? e->tex.on = 0 : 0;
+	e->tex.on == 2 ? e->tex.on = 1 : 0;
+	e->cam.run = e->tex.on == 1 ? 0.09 : 0.05;
 	if (kc == 257 && e->key.run == 1)
 	{
 		Mix_PlayChannel(3, e->sound.walk, -1);
@@ -39,12 +37,6 @@ int	key_press(int kc, t_env *e)
 		Mix_PlayChannel(3, e->sound.run, -1);
 		e->key.run = 1;
 	}
-	if (kc == 49)
-		e->cam.shoot = 1;
-	if (kc == 17 && e->tex.on == 0)
-		e->tex.on = 1;
-	else if (kc == 17)
-		e->tex.on = 0;
 	return (1);
 }
 

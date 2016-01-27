@@ -6,11 +6,23 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 11:19:45 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/27 09:47:30 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 15:51:13 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wlf3d.h"
+
+static void	skybox_init(t_env *e)
+{
+	if (!(e->skb.adr = mlx_xpm_file_to_image(e->mlx,
+	"./resources/texture/skybox.xpm", &e->skb.w, &e->skb.h)))
+		quit(1, e, "Can't load Skybox\n");
+	if (!(e->skb.skb = mlx_get_data_addr(e->skb.adr, &e->skb.bpp,
+	&e->skb.sl, &e->skb.endian)))
+		quit(1, e, "Can't load Skybox\n");
+	e->skb.opp = e->skb.bpp / 8;
+	e->skb.pos.x = 100;
+}
 
 static void	load_texture(t_env *e, int i, char *line)
 {
@@ -32,6 +44,7 @@ static void	load_texture(t_env *e, int i, char *line)
 		quit(1, e, "Can't load textures\n");
 	}
 	e->tex.img[i].opp = e->tex.img[i].bpp / 8;
+	e->tex.img[i].h2 = e->tex.img[i].h / 2;
 	ft_strdel(&line);
 }
 
@@ -81,4 +94,5 @@ void		texture_init(t_env *e)
 	}
 	close(fd) == -1 ? quit(1, e, "Close() failed\n") : 0;
 	floor_init(e);
+	skybox_init(e);
 }

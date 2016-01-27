@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 15:52:00 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/27 10:14:05 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 15:34:36 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <SDL.h>
 # include <SDL_mixer.h>
 
+# define ABS(x) (x < 0 ? -x : x);
+
 typedef	struct	s_arg
 {
 	char		*map;
@@ -34,6 +36,7 @@ typedef	struct	s_win
 	void		*adr;
 	int			w;
 	int			h;
+	int			h2;
 }				t_win;
 
 typedef	struct	s_img
@@ -65,6 +68,7 @@ typedef	struct	s_key
 	int			q;
 	int			e;
 	int			r;
+	int			b;
 	int			run;
 }				t_key;
 
@@ -106,12 +110,12 @@ typedef struct	s_spr
 	char		*spr;
 	int			w;
 	int			h;
+	int			h2;
 	int			bpp;
 	int			opp;
 	int			sl;
 	int			endian;
 	int			index;
-	t_vectI		pos;
 }				t_spr;
 
 typedef struct	s_tex
@@ -124,12 +128,6 @@ typedef struct	s_tex
 	float		wall;
 }				t_tex;
 
-typedef struct	s_skb
-{
-	t_spr		skb[4];
-	short		point;
-}				t_skb;
-
 typedef struct	s_flo
 {
 	t_spr		img;
@@ -137,15 +135,26 @@ typedef struct	s_flo
 	t_vect		cur;
 	t_vectI		tex;
 	float		wei;
-	float		distW;
 	float		dist;
 	int			color;
 
 }				t_flo;
 
+typedef struct	s_skb
+{
+	void		*adr;
+	char		*skb;
+	int			w;
+	int			h;
+	int			bpp;
+	int			opp;
+	int			sl;
+	int			endian;
+	t_vectI		pos;
+}				t_skb;
+
 typedef struct	s_ply
 {
-	t_spr		f;
 	t_spr		s;
 	short		hp;
 	short		wp;
@@ -161,11 +170,11 @@ typedef struct	s_env
 	t_cam		cam;
 	t_ply		player;
 	t_key		key;
-	t_vectI		mse;
 	t_map		map;
 	t_ray		ray;
 	t_spr		*spr;
 	t_tex		tex;
+	t_skb		skb;
 	t_flo		flo;
 	short		s_nb;
 	short		t_nb;
@@ -193,11 +202,11 @@ int				action(t_env *e);
 int				expose_hook(t_env *e);
 
 void			render(t_env *e);
+void			skybox_draw(t_env *e);
 
 void			img_pixel_put(t_env *e, int x, int y, int color);
 int				rgb_to_hex(int r, int g, int b);
 
-int				mouse_pos(int x, int y, t_env *e);
 int				key_press(int kc, t_env *e);
 int				key_release(int kc, t_env *e);
 
@@ -206,10 +215,10 @@ void			raycast_calc(t_env *e);
 void			raycast_cast(t_env *e);
 void			raycast_dist(t_env *e);
 void			raycast_draw(t_env *e, int x);
-void    		raycast_tx(t_env *e, int ds, int de, int hl);
+void			raycast_tx(t_env *e, int ds, int de, int hl);
 void			raycast_tx_draw(t_env *e, int ds, int de, int hl);
 
-t_vect     		find_empty_pos(t_env *e);
-void    		map_destroy(t_map *map);
+t_vect			find_empty_pos(t_env *e);
+void			map_destroy(t_map *map);
 
 #endif

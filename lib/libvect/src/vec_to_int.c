@@ -6,15 +6,15 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 08:17:19 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/27 15:59:37 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 16:18:25 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libvect.h"
 
-t_vectI	vec_to_int(const t_vect v)
+t_vecti	vec_to_int(const t_vect v)
 {
-	t_vectI	r;
+	t_vecti	r;
 
 	r.x = (int)v.x;
 	r.y = (int)v.y;

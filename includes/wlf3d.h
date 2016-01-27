@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 15:52:00 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/27 15:34:36 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 16:21:13 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ typedef	struct	s_ray
 	t_vect		dir;
 	t_vect		len;
 	t_vect		a;
-	t_vectI		map;
-	t_vectI		step;
+	t_vecti		map;
+	t_vecti		step;
 	int			side;
 	int			hit;
 	int			wallc;
@@ -121,7 +121,7 @@ typedef struct	s_spr
 typedef struct	s_tex
 {
 	t_spr		*img;
-	t_vectI		tex;
+	t_vecti		tex;
 	int			index;
 	short		on;
 	int			color;
@@ -133,7 +133,7 @@ typedef struct	s_flo
 	t_spr		img;
 	t_vect		wall;
 	t_vect		cur;
-	t_vectI		tex;
+	t_vecti		tex;
 	float		wei;
 	float		dist;
 	int			color;
@@ -150,7 +150,7 @@ typedef struct	s_skb
 	int			opp;
 	int			sl;
 	int			endian;
-	t_vectI		pos;
+	t_vecti		pos;
 }				t_skb;
 
 typedef struct	s_ply

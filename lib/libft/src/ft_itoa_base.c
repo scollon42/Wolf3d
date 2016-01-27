@@ -6,15 +6,15 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/14 16:03:58 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/14 16:04:58 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 16:14:41 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int  ft_nbrlen_base(long n, int *abs, int base)
+static int	ft_nbrlen_base(long n, int *abs, int base)
 {
-	int len;
+	int		len;
 
 	len = 0;
 	*abs = 1;
@@ -35,17 +35,17 @@ static int  ft_nbrlen_base(long n, int *abs, int base)
 	return (len);
 }
 
-char        *ft_itoa_base(int value, int base)
+char		*ft_itoa_base(int value, int base)
 {
-	int     len;
-	int     abs;
-	int     conv;
-	char    *ret;
+	int		len;
+	int		abs;
+	int		conv;
+	char	*ret;
 
 	if (base < 2 || base > 16)
 		return (NULL);
 	len = ft_nbrlen_base((long)value, &abs, base);
-	if(!(ret = (char *)malloc(sizeof(char) * len)))
+	if (!(ret = (char *)malloc(sizeof(char) * len)))
 		return (NULL);
 	ret[len] = '\0';
 	ret[0] = (abs == -1 ? '-' : 0);

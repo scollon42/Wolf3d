@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 08:25:27 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/27 16:03:03 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 16:22:41 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 # define R2D 180 / PI
 # define ABS(x) (x < 0 ? -x : x);
 
-typedef struct	s_vectI
+typedef struct	s_vecti
 {
 	int			x;
 	int			y;
-}				t_vectI;
+}				t_vecti;
 
 typedef struct	s_vectf
 {
@@ -38,11 +38,10 @@ typedef struct	s_vect
 	float		y;
 }				t_vect;
 
-
 /*
 **			Vectors creations
 */
-t_vect 			vec_create(float x, float y);
+t_vect			vec_create(float x, float y);
 
 /*
 **			Vectors informations
@@ -53,16 +52,16 @@ float			vec_magnitude(const t_vect v);
 /*
 **			Vectors modifications
 */
-t_vect			int_to_vec(const t_vectI i);
-t_vectI			vec_to_int(const t_vect v);
+t_vect			int_to_vec(t_vecti i);
+t_vecti			vec_to_int(const t_vect v);
 t_vect			vec_norm(const t_vect v);
 t_vect			vec_scale(const t_vect v, const float scale);
-void    		vec_rotate(t_vect *v, float theta);
+void			vec_rotate(t_vect *v, float theta);
 
 /*
 **			Vectors math operation
 */
-t_vect  		vec_add(const t_vect va, const t_vect vb);
+t_vect			vec_add(const t_vect va, const t_vect vb);
 t_vect			vec_sub(const t_vect va, const t_vect vb);
 t_vect			vec_mult(const t_vect v, const float mult);
 t_vect			vec_div(const t_vect v, const float div);

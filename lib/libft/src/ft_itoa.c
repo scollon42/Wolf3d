@@ -6,7 +6,7 @@
 /*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/12 10:02:07 by exam              #+#    #+#             */
-/*   Updated: 2016/01/14 14:18:22 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 16:07:18 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char		*ft_itoa(int nbr)
 	abs = 1;
 	len = ft_nbrlen((long)nbr, &abs);
 	i = len - 1;
-	if((ret = (char *)malloc(sizeof(char) * len)) == NULL)
+	if ((ret = (char *)malloc(sizeof(char) * len)) == NULL)
 		return (NULL);
 	ret[len] = '\0';
 	if (abs == -1)

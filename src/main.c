@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 16:01:47 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/27 16:40:19 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 17:19:49 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,19 @@
 
 static void	aff_help(t_env *e)
 {
-	ft_putendl("Here we'll be able to help you. Soon.. I promise.");
+	ft_putstr("\n\033[1;32mUsage :\033[0m \033[1m./wolf3d");
+	ft_putendl(" [-m file.wf] [-w window width] [-h window height]\033[0m\n");
+	ft_putendl("\033[1mOptions :\033[0m");
+	ft_putendl("        -m     : set map file");
+	ft_putendl("        -w     : set windows width");
+	ft_putendl("        -h     : set windows height");
+	ft_putendl("        --help : print help");
+	ft_putendl("\033[1mHow to use :\033[0m");
+	ft_putendl("	Use wasd or arrow to move");
+	ft_putendl("	Use space to shoot");
+	ft_putendl("	Use r to reload");
+	ft_putendl("	Use t set textures on");
+	ft_putendl("	Use ESC to quit");
 	quit(0, e, NULL);
 }
 

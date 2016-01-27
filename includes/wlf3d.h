@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 15:52:00 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/26 16:50:13 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 10:14:05 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef	struct	s_img
 	void		*adr;
 	char		*img;
 	int			bpp;
+	int			opp;
 	int			sl;
 	int			endian;
 }				t_img;
@@ -86,7 +87,7 @@ typedef	struct	s_ray
 	int			wallc;
 	int			x;
 	float		cam;
-	double		dist;
+	float		dist;
 }				t_ray;
 
 typedef	struct	s_snd
@@ -118,17 +119,37 @@ typedef struct	s_tex
 	t_spr		*img;
 	t_vectI		tex;
 	int			index;
+	short		on;
 	int			color;
-	int			on;
-	double		wall;
+	float		wall;
 }				t_tex;
+
+typedef struct	s_skb
+{
+	t_spr		skb[4];
+	short		point;
+}				t_skb;
+
+typedef struct	s_flo
+{
+	t_spr		img;
+	t_vect		wall;
+	t_vect		cur;
+	t_vectI		tex;
+	float		wei;
+	float		distW;
+	float		dist;
+	int			color;
+
+}				t_flo;
 
 typedef struct	s_ply
 {
 	t_spr		f;
-	int			hp;
-	int			wp;
-	int			am;
+	t_spr		s;
+	short		hp;
+	short		wp;
+	short		am;
 }				t_ply;
 
 typedef struct	s_env
@@ -145,8 +166,9 @@ typedef struct	s_env
 	t_ray		ray;
 	t_spr		*spr;
 	t_tex		tex;
-	int			s_nb;
-	int			t_nb;
+	t_flo		flo;
+	short		s_nb;
+	short		t_nb;
 	t_snd		sound;
 }				t_env;
 
@@ -187,6 +209,7 @@ void			raycast_draw(t_env *e, int x);
 void    		raycast_tx(t_env *e, int ds, int de, int hl);
 void			raycast_tx_draw(t_env *e, int ds, int de, int hl);
 
-t_vect     		 find_empty_pos(t_env *e);
+t_vect     		find_empty_pos(t_env *e);
 void    		map_destroy(t_map *map);
+
 #endif

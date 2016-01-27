@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 13:44:08 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/26 15:44:12 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 07:42:11 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	transparancy(t_spr *spr)
 		x = 0;
 		while (x < spr->w)
 		{
-			pos = ((x * spr->bpp / 8) + (y * spr->sl));
+			pos = ((x * spr->opp) + (y * spr->sl));
 			if (spr->spr[pos] == (char)136 && spr->spr[pos + 1] == (char)0
 					&& spr->spr[pos + 2] == (char)152)
 				spr->spr[pos + 3] = 255;
@@ -50,6 +50,7 @@ static void	load_sprites(t_env *e, int i, char *line)
 		e->s_nb = (i > e->s_nb ? e->s_nb : i);
 		quit(1, e, "Failed to load sprites\n");
 	}
+	e->spr[i].opp = e->spr[i].bpp / 8;
 	ft_strdel(&line);
 	transparancy(&e->spr[i]);
 }

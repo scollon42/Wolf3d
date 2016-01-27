@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 07:29:01 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/26 17:07:45 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 10:03:38 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void	aff_menu(t_env *e)
 	am = ft_itoa(e->player.am);
 	hp = ft_itoa(e->player.hp);
 	mlx_put_image_to_window(e->mlx, e->win.adr, e->player.f.adr, -1, 0);
+	mlx_put_image_to_window(e->mlx, e->win.adr, e->player.s.adr,
+			e->win.w / 2, e->win.h / 2 + e->player.s.h + 20);
 	mlx_string_put(e->mlx, e->win.adr, e->player.f.w + 10, 10, 0xff0000, hp);
 	mlx_string_put(e->mlx, e->win.adr, e->player.f.w + 10, 30, 0xff0000, am);
 	ft_strdel(&am);

@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 08:25:27 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/21 08:59:59 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 09:09:02 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ typedef struct  s_vectI
 	int         x;
 	int         y;
 }               t_vectI;
+
+typedef struct	s_vectf
+{
+	double		x;
+	double		y;
+}				t_vectf;
 
 typedef struct  s_vect
 {

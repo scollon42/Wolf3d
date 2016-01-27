@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 16:30:23 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/26 16:51:19 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 10:00:57 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	img_init(t_env *e)
 	if (!(e->img.img = mlx_get_data_addr(e->img.adr, &e->img.bpp,
 					&e->img.sl, &e->img.endian)))
 		quit(1, e, "Mlx failed to create image");
+	e->img.opp = e->img.bpp / 8;
 }
 
 void	cam_init(t_env *e)
@@ -33,9 +34,15 @@ void	cam_init(t_env *e)
 	e->player.am = 10;
 	if (!(e->player.f.adr = mlx_xpm_file_to_image(e->mlx,
 	"./resources/sprites/head.xpm", &e->player.f.w, &e->player.f.h)))
-		quit (1, e, "Failed to laod sprites\n");
+		quit (1, e, "Failed to load sprites\n");
 	if (!(e->player.f.spr = mlx_get_data_addr(e->player.f.adr, &e->player.f.bpp,
 			&e->player.f.sl, &e->player.f.endian)))
+		quit (1, e, "Failed to load sprites\n");
+	if (!(e->player.s.adr = mlx_xpm_file_to_image(e->mlx,
+	"./resources/sprites/sights.xpm", &e->player.s.w, &e->player.s.h)))
+		quit (1, e, "Failed to load sprites\n");
+	if (!(e->player.s.spr = mlx_get_data_addr(e->player.s.adr, &e->player.s.bpp,
+			&e->player.s.sl, &e->player.s.endian)))
 		quit (1, e, "Failed to load sprites\n");
 }
 
@@ -85,6 +92,6 @@ void	env_init(t_env *e)
 	e->tex.on = 0;
 	map_init(e);
 	cam_init(e);
-	init_sound(e);
 	sprites_init(e);
+	init_sound(e);
 }

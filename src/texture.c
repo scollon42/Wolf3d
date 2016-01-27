@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 11:19:45 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/26 15:45:16 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 09:47:30 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,19 @@ static void	load_texture(t_env *e, int i, char *line)
 		e->t_nb = (i > e->t_nb ? e->t_nb : i);
 		quit(1, e, "Can't load textures\n");
 	}
+	e->tex.img[i].opp = e->tex.img[i].bpp / 8;
 	ft_strdel(&line);
+}
+
+static void	floor_init(t_env *e)
+{
+	if (!(e->flo.img.adr = mlx_xpm_file_to_image(e->mlx,
+		"./resources/texture/floor.xpm", &e->flo.img.w, &e->flo.img.h)))
+		quit(1, e, "Can't load floor texture\n");
+	if (!(e->flo.img.spr = mlx_get_data_addr(e->flo.img.adr, &e->flo.img.bpp,
+		&e->flo.img.sl, &e->flo.img.endian)))
+		quit(1, e, "Can't load floor texture\n");
+	e->flo.img.opp = e->flo.img.bpp / 8;
 }
 
 void		texture_destroy(t_env *e)
@@ -68,4 +80,5 @@ void		texture_init(t_env *e)
 		quit(1, e, "Invalid path file\n");
 	}
 	close(fd) == -1 ? quit(1, e, "Close() failed\n") : 0;
+	floor_init(e);
 }

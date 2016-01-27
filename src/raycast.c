@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 11:20:04 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/26 16:52:06 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 08:06:10 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,10 +109,10 @@ void	raycast_draw(t_env *e, int x)
 				img_pixel_put(e, x, ds, rgb_to_hex(color, color, color));
 		}
 	}
-	de = de < 0 ? e->win.h - 1 : de - 1;
-	while (++de < e->win.h)
-	{
-		img_pixel_put(e, x, de, 0x7B7263);
-		img_pixel_put(e, x, e->win.h - de - 1, 0x101010);
-	}
+	/* de = de < 0 ? e->win.h - 1 : de - 1; */
+	/* while (++de < e->win.h) */
+	/* { */
+	/* 	img_pixel_put(e, x, de, 0x7B7263); */
+	/* 	img_pixel_put(e, x, e->win.h - de - 1, 0x101010); */
+	/* } */
 }

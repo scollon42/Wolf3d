@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/26 07:52:47 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/27 15:51:35 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 16:31:02 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static void		rotate(t_env *e)
 	}
 	vec_rotate(&e->cam.dir, rot);
 	vec_rotate(&e->cam.pln, rot);
+	Mix_Pause(3);
 }
 
 static void		move(t_env *e)
@@ -78,7 +79,7 @@ static void		move(t_env *e)
 		e->cam.pos = e->map.map[(int)tmp.y][(int)tmp.x] == 0 ? tmp : e->cam.pos;
 	}
 	e->key.a || e->key.d ? rotate(e) : 0;
-	Mix_Resume(3);
+	e->key.w || e->key.s || e->key.q || e->key.e ? Mix_Resume(3) : 0;
 }
 
 int				action(t_env *e)

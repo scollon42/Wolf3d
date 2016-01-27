@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 16:01:47 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/27 13:44:39 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 16:40:19 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ static void	read_arg(t_env *e, int ac, char **av)
 			e->arg.h = ft_atoi(av[i + 1]);
 	}
 	e->arg.map == NULL ? e->arg.map = ft_strdup("./resources/map/map.wf") : 0;
-	e->arg.w == 0 ? e->arg.w = 800 : 0;
-	e->arg.h == 0 ? e->arg.h = 800 : 0;
+	e->arg.w <= 200 || e->arg.w >= 200 ? e->arg.w = 800 : 0;
+	e->arg.h <= 200 || e->arg.h >= 200 ? e->arg.h = 800 : 0;
 	if ((e->arg.fd = open(e->arg.map, O_RDWR)) == -1)
-		quit(1, e, "Error : failed to load map file\n");
+		quit(1, e, "Failed to load map file\n");
 	e->arg.map != NULL ? ft_strdel(&e->arg.map) : 0;
 }
 
@@ -50,7 +50,7 @@ int			main(int ac, char **av)
 	t_env	*e;
 
 	if (!(e = (t_env *)malloc(sizeof(t_env))))
-		quit(1, NULL, "Error : environnement can't be create\n");
+		quit(1, NULL, "Environnement can't be create\n");
 	read_arg(e, ac, av);
 	env_init(e);
 	core(e);

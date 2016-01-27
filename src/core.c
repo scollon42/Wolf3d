@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 07:29:01 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/27 15:40:31 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 17:00:38 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int			expose_hook(t_env *e)
 {
 	mlx_destroy_image(e->mlx, e->img.adr);
 	img_init(e);
-	skybox_draw(e);
+	e->tex.on ? skybox_draw(e) : 0;
 	render(e);
 	mlx_clear_window(e->mlx, e->win.adr);
 	mlx_put_image_to_window(e->mlx, e->win.adr, e->img.adr, 0, 0);

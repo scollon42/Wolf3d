@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 11:20:20 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/27 15:21:57 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 17:09:55 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ void		raycast_tx(t_env *e, int ds, int de, int hl)
 	e->tex.index = e->map.map[(int)e->ray.map.y][(int)e->ray.map.x] - 1;
 	e->tex.index < 0 || e->tex.index >= e->t_nb ? e->tex.index = 0 : 0;
 	e->tex.wall = e->ray.side == 1 ? e->ray.pos.x + ((e->ray.map.y -
-		e->ray.pos.y + (1 - e->ray.step.y) / 2) / e->ray.dir.y)
+				e->ray.pos.y + (1 - e->ray.step.y) / 2) / e->ray.dir.y)
 		* e->ray.dir.x : e->ray.pos.y + ((e->ray.map.x - e->ray.pos.x +
-		(1 - e->ray.step.x) / 2) / e->ray.dir.x) * e->ray.dir.y;
+					(1 - e->ray.step.x) / 2) / e->ray.dir.x) * e->ray.dir.y;
 	e->tex.wall -= floor(e->tex.wall);
 	e->tex.tex.x = (int)(e->tex.wall * e->tex.img[e->tex.index].w);
 	while (++y < de)
@@ -80,4 +80,26 @@ void		raycast_tx(t_env *e, int ds, int de, int hl)
 		img_pixel_put(e, e->ray.x, y, e->tex.color);
 	}
 	tex_floor(e, de);
+}
+
+void		raycast_nu(t_env *e, int ds, int de, int hl)
+{
+	int		color;
+
+	if (e->ray.side == 0 && e->ray.dir.x > 0)
+		color = 0xE78F8E;
+	else if (e->ray.side == 0 && e->ray.dir.x < 0)
+		color = 0xACD8AA;
+	else if (e->ray.side == 1 && e->ray.dir.y > 0)
+		color = 0xB3CDD1;
+	else
+		color = 0xfec057;
+	while (++ds < de)
+		img_pixel_put(e, e->ray.x, ds, color);
+	de = de < 0 ? e->win.h - 1 : de - 1;
+	while (++de < e->win.h)
+	{
+		img_pixel_put(e, e->ray.x, de, 0x504136);
+		img_pixel_put(e, e->ray.x, e->win.h - de - 1, 0x91F9E5);
+	}
 }

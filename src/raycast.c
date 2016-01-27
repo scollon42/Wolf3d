@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 11:20:04 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/27 15:34:53 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 16:50:59 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,26 +88,14 @@ void	raycast_draw(t_env *e, int x)
 	int		hl;
 	int		ds;
 	int		de;
-	int		color;
 
 	hl = ABS((int)(e->win.h / e->ray.dist));
 	ds = (int)(-hl / 2 + e->win.h2) - 1;
 	de = (int)(hl / 2 + e->win.h2);
 	ds < -1 ? ds = -1 : 0;
 	de >= e->win.h ? de = e->win.h - 1 : 0;
-	color = 210 - e->ray.dist * 8.0;
-	color < 0 ? color = 0 : 0;
 	if (e->tex.on)
 		raycast_tx(e, ds, de, hl);
 	else
-	{
-		while (++ds < de)
-		{
-			if (e->ray.side == 1)
-				img_pixel_put(e, x, ds, rgb_to_hex(color + 30, color + 30,
-								color + 30));
-			else
-				img_pixel_put(e, x, ds, rgb_to_hex(color, color, color));
-		}
-	}
+		raycast_nu(e, ds, de, hl);
 }

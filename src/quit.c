@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 16:09:16 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/26 14:17:15 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 16:43:16 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void		quit(int error, t_env *e, char *msg)
 	{
 		e->img.adr != NULL ? mlx_destroy_image(e->mlx, e->img.adr) : 0;
 		e->win.adr != NULL ? mlx_destroy_window(e->mlx, e->win.adr) : 0;
+		e->skb.adr != NULL ? mlx_destroy_image(e->mlx, e->skb.adr) : 0;
 		e->arg.map != NULL ? ft_strdel(&e->arg.map) : 0;
 		e->map.map != NULL ? map_destroy(&e->map) : 0;
 		e->tex.img != NULL ? texture_destroy(e) : 0;

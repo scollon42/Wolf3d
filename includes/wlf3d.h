@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 15:52:00 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/27 16:21:13 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 16:49:14 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,6 +215,7 @@ void			raycast_calc(t_env *e);
 void			raycast_cast(t_env *e);
 void			raycast_dist(t_env *e);
 void			raycast_draw(t_env *e, int x);
+void			raycast_nu(t_env *e, int ds, int de, int hl);
 void			raycast_tx(t_env *e, int ds, int de, int hl);
 void			raycast_tx_draw(t_env *e, int ds, int de, int hl);
 

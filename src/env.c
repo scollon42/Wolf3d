@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 16:30:23 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/27 15:48:02 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/27 16:28:27 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	env_init(t_env *e)
 	img_init(e);
 	key_init(&e->key);
 	texture_init(e);
-	e->tex.on = 0;
+	e->tex.on = 1;
 	map_init(e);
 	cam_init(e);
 	sprites_init(e);

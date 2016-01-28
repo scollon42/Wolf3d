@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/26 07:52:47 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/27 16:31:02 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/28 08:20:19 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ static void		rotate(t_env *e)
 	e->key.d ? rot = -3.5 : 0;
 	if (e->key.a)
 	{
-		e->skb.pos.x -= 28;
+		e->skb.pos.x -= 20;
 		e->skb.pos.x < 0 ? e->skb.pos.x = 0 : 0;
 	}
 	else if (e->key.d)
 	{
-		e->skb.pos.x += 28;
+		e->skb.pos.x += 20;
 		e->skb.pos.x > e->skb.w ? e->skb.pos.x = 10 : 0;
 	}
 	vec_rotate(&e->cam.dir, rot);

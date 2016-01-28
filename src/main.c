@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 16:01:47 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/27 17:19:49 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/28 08:17:05 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	read_arg(t_env *e, int ac, char **av)
 	}
 	e->arg.map == NULL ? e->arg.map = ft_strdup("./resources/map/map.wf") : 0;
 	e->arg.w <= 200 || e->arg.w >= 200 ? e->arg.w = 800 : 0;
-	e->arg.h <= 200 || e->arg.h >= 200 ? e->arg.h = 800 : 0;
+	e->arg.h <= 200 || e->arg.h >= 200 ? e->arg.h = 600 : 0;
 	if ((e->arg.fd = open(e->arg.map, O_RDWR)) == -1)
 		quit(1, e, "Failed to load map file\n");
 	e->arg.map != NULL ? ft_strdel(&e->arg.map) : 0;

@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 16:30:23 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/27 16:28:27 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/28 09:53:26 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,16 +71,15 @@ void	init_sound(t_env *e)
 		quit(1, e, "Failed to load sounds resources\n");
 	if (!(e->sound.walk = Mix_LoadWAV("resources/sounds/walk.wav")))
 		quit(1, e, "Failed to load sounds resources\n");
-	if (Mix_PlayMusic(e->sound.music, -1) == -1)
-		quit(1, e, "Failed to load sounds resources\n");
+	Mix_PlayMusic(e->sound.music, -1);
 }
 
 void	env_init(t_env *e)
 {
 	if (!(e->mlx = mlx_init()))
 		quit(1, e, "Mlx init failed\n");
-	e->win.w = e->arg.w;
-	e->win.h = e->arg.h;
+	e->win.w = 800;
+	e->win.h = 600;
 	e->win.h2 = e->win.h / 2;
 	e->win.adr = mlx_new_window(e->mlx, e->win.w, e->win.h, "WOLF3D @ 42");
 	if (e->win.adr == NULL)

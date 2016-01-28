@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 15:52:00 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/27 16:49:14 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/28 09:53:21 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ typedef	struct	s_arg
 {
 	char		*map;
 	int			fd;
-	int			w;
-	int			h;
 }				t_arg;
 
 typedef	struct	s_win
@@ -187,8 +185,12 @@ void			env_init(t_env *e);
 void			img_init(t_env *e);
 void			cam_init(t_env *e);
 void			key_init(t_key *k);
-void			map_init(t_env *e);
 void			init_sound(t_env *e);
+
+
+void			map_init(t_env *e);
+void			map_destroy(t_map *map);
+t_vect			find_empty_pos(t_env *e);
 
 void			texture_init(t_env *e);
 void			texture_destroy(t_env *e);
@@ -200,16 +202,14 @@ void			sprites_destroy(t_env *e);
 void			core(t_env *e);
 int				action(t_env *e);
 int				expose_hook(t_env *e);
-
-void			render(t_env *e);
-void			skybox_draw(t_env *e);
+int				key_press(int kc, t_env *e);
+int				key_release(int kc, t_env *e);
 
 void			img_pixel_put(t_env *e, int x, int y, int color);
 int				rgb_to_hex(int r, int g, int b);
 
-int				key_press(int kc, t_env *e);
-int				key_release(int kc, t_env *e);
-
+void			render(t_env *e);
+void			skybox_draw(t_env *e);
 void			raycast_init(t_env *e, int x);
 void			raycast_calc(t_env *e);
 void			raycast_cast(t_env *e);
@@ -218,8 +218,5 @@ void			raycast_draw(t_env *e, int x);
 void			raycast_nu(t_env *e, int ds, int de, int hl);
 void			raycast_tx(t_env *e, int ds, int de, int hl);
 void			raycast_tx_draw(t_env *e, int ds, int de, int hl);
-
-t_vect			find_empty_pos(t_env *e);
-void			map_destroy(t_map *map);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: scollon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 12:12:44 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/19 14:05:28 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/29 10:40:06 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_nbrlen(long n, int *abs)
+int		ft_nbrlen(long n, int *abs)
 {
 	int	len;
 

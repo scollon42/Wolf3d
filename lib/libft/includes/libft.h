@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 08:36:57 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/19 14:05:57 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/29 10:40:23 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ char				*ft_strnstr(const char *s1, const char *s2, size_t n);
 char				*ft_strrchr(char const *s, int c);
 char				*ft_strstr(const char *s1, const char *s2);
 int					ft_atoi(char const *str);
+double				ft_atof(char const *str);
 
 /*
 ** Added functions
@@ -125,7 +126,7 @@ char				*ft_itoa(int n);
 char				*ft_itoa_base(int value, int base);
 
 int					ft_isupcase(int c);
-size_t				ft_nbrlen(long n, int *abs);
+int					ft_nbrlen(long n, int *abs);
 void				ft_puterror(char const *s);
 void				ft_base(unsigned int n, unsigned int base);
 void				ft_swap(char *a, char *b);

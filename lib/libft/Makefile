@@ -6,7 +6,7 @@
 #    By: scollon <scollon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 13:40:40 by scollon           #+#    #+#              #
-#    Updated: 2016/01/21 08:50:30 by scollon          ###   ########.fr        #
+#    Updated: 2016/01/29 10:38:02 by scollon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRC_NAME  = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memc
 			ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_nbrlen.c \
 			ft_puterror.c ft_isupcase.c ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c \
 			ft_lstiter.c ft_lstmap.c ft_swap.c ft_strrev.c ft_base.c  ft_str_to_hex.c \
-			ft_itoa_base.c get_next_line.c
+			ft_itoa_base.c get_next_line.c ft_atof.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 

@@ -22,7 +22,7 @@ SDL2_HEADER_MIXER	= -I ~/Library/Frameworks/SDL2_mixer.framework/Headers/
 
 SDL        			= -F ~/Library/Frameworks $(SDL2_MIXER) $(SDL2)
 SDL_HEADER 			= -F ~/Library/Frameworks $(SDL2_HEADER_MIXER) $(SDL2_HEADER)
-INC_LIBFT_PATH 		= $(LIB_PATH)libft/includes/ $(LIB_PATH)libvect/includes/
+INC_LIBFT_PATH 		= $(LIB_PATH)Libft/includes/ $(LIB_PATH)libvect/includes/
 MLX_PATH 			= $(LIB_PATH)mlx/
 MLX					= -L$(MLX_PATH) -I$(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
 

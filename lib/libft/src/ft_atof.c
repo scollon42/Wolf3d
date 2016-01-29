@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/24 15:34:52 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/29 10:33:34 by scollon          ###   ########.fr       */
+/*   Created: 2016/01/29 10:10:02 by scollon           #+#    #+#             */
+/*   Updated: 2016/01/29 10:33:47 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(char const *str)
+double	ft_atof(const char *str)
 {
-	int	i;
-	int	value;
-	int	negative;
+	double	i;
+	double	value;
+	int		negative;
 
-	i = 0;
+	i = 1.0;
 	value = 0;
 	negative = 0;
 	while (*str == '\r' || *str == '\v' || *str == '\t' ||
@@ -26,9 +26,10 @@ int		ft_atoi(char const *str)
 		str++;
 	*str == '-' ? negative = 1 : 0;
 	*str == '-' || *str == '+' ? str++ : 0;
-	while (*str >= '0' && *str <= '9' && i++ < 19)
+	while (*str >= '0' && *str <= '9')
 		value = (value * 10) + (*(str++) - '0');
-	i == 20 && negative ? value = 0 : 0;
-	i == 20 && !negative ? value = -1 : 0;
+	if (*str == '.' && (str++))
+		while (*str >= '0' && *str <= '9')
+			value += (*(str++) - '0') / (i *= 10);
 	return (negative && value > 0 ? -value : value);
 }

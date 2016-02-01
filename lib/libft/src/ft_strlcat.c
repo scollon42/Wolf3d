@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 15:44:10 by scollon           #+#    #+#             */
-/*   Updated: 2015/12/14 09:07:34 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/29 16:41:45 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 		}
 		src1++;
 	}
-	dst1 = 0;
+	*dst1 = 0;
 	return (dlen + (src1 - src));
 }

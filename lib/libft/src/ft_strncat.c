@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 11:36:24 by scollon           #+#    #+#             */
-/*   Updated: 2015/11/25 12:11:51 by scollon          ###   ########.fr       */
+/*   Created: 2016/02/01 09:22:50 by scollon           #+#    #+#             */
+/*   Updated: 2016/02/01 09:23:12 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,13 @@
 
 char	*ft_strncat(char *s1, const char *s2, size_t n)
 {
-	int				i;
-	unsigned int	j;
+	char	*r;
 
-	i = 0;
-	j = 0;
-	while (s1[i] != '\0')
-		i++;
-	while (s2[j] != '\0' && j != n)
-	{
-		s1[i] = s2[j];
-		i++;
-		j++;
-	}
-	s1[i] = '\0';
-	return (s1);
+	r = s1;
+	while (*s1)
+		s1++;
+	while (*s2 && n--)
+		*s1++ = *s2++;
+	*s1 = 0;
+	return (r);
 }

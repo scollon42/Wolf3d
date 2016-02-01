@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 15:06:21 by scollon           #+#    #+#             */
-/*   Updated: 2015/11/25 09:48:24 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/29 14:36:11 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,9 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	unsigned int	i;
 	char			*s1;
 
-	i = 0;
 	s1 = (char *)s;
-	while (i != n)
-	{
-		s1[i] = 0;
-		i++;
-	}
+	while (n--)
+		*(s1++) = 0;
 }

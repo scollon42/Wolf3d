@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 08:36:57 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/29 10:40:23 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/29 14:25:30 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,6 @@ char				*ft_itoa_base(int value, int base);
 
 int					ft_isupcase(int c);
 int					ft_nbrlen(long n, int *abs);
-void				ft_puterror(char const *s);
 void				ft_base(unsigned int n, unsigned int base);
 void				ft_swap(char *a, char *b);
 void				ft_strrev(char *str, int len);

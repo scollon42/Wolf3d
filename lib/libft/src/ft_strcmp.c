@@ -6,23 +6,18 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 17:10:45 by scollon           #+#    #+#             */
-/*   Updated: 2015/11/26 13:07:10 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/29 16:04:29 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_strcmp(const char *s1, const char *s2)
 {
-	int	i;
-
-	i = 0;
-	while (s1[i] != 0 && s2[i] != 0)
+	while (*s1 && *s2)
 	{
-		if (s1[i] != s2[i])
+		if (*s1 != *s2)
 			break ;
-		i++;
+		s1++;
+		s2++;
 	}
-	if (s1[i] == s2[i])
-		return (0);
-	else
-		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	return (*s1 == *s2 ? 0 : (unsigned char)*s1 - (unsigned char)*s2);
 }

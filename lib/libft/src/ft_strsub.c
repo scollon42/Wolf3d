@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 07:55:30 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/18 07:59:09 by scollon          ###   ########.fr       */
+/*   Updated: 2016/02/01 08:57:13 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 	i = -1;
 	if (s == NULL)
 		return (NULL);
-	if ((sub = (char *)malloc(sizeof(char) * len + 1)) == NULL)
+	if (!(sub = ft_strnew(len)))
 		return (NULL);
-	while (++i != len)
+	while (++i < len)
 		sub[i] = s[start++];
-	sub[i] = 0;
 	return (sub);
 }

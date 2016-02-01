@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/14 16:03:58 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/27 16:14:41 by scollon          ###   ########.fr       */
+/*   Created: 2016/02/01 09:21:45 by scollon           #+#    #+#             */
+/*   Updated: 2016/02/01 09:21:57 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char		*ft_itoa_base(int value, int base)
 	if (base < 2 || base > 16)
 		return (NULL);
 	len = ft_nbrlen_base((long)value, &abs, base);
-	if (!(ret = (char *)malloc(sizeof(char) * len)))
+	if (!(ret = ft_strnew(len)))
 		return (NULL);
 	ret[len] = '\0';
 	ret[0] = (abs == -1 ? '-' : 0);

@@ -6,7 +6,7 @@
 /*   By: scollon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 17:03:38 by scollon           #+#    #+#             */
-/*   Updated: 2015/11/28 08:43:02 by scollon          ###   ########.fr       */
+/*   Updated: 2016/02/01 09:03:07 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,15 @@
 
 void	ft_putnbr(int n)
 {
-	char	c;
+	long	r;
 
-	c = 0;
-	if (n == -2147483648)
+	r = (long)n;
+	if (n < 0)
 	{
-		write(1, "-2147483648", 11);
+		r *= -1;
+		ft_putchar('-');
 	}
-	else
-	{
-		if (n < 0)
-		{
-			n *= -1;
-			write(1, "-", 1);
-		}
-		if (n > 9)
-		{
-			ft_putnbr(n / 10);
-			ft_putnbr(n % 10);
-		}
-		else
-		{
-			c = n + 48;
-			write(1, &c, 1);
-		}
-	}
+	if (r > 9)
+		ft_putnbr(r / 10);
+	ft_putchar((r % 10) + '0');
 }

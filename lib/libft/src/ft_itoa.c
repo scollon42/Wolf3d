@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/12 10:02:07 by exam              #+#    #+#             */
-/*   Updated: 2016/01/29 10:47:17 by scollon          ###   ########.fr       */
+/*   Created: 2016/02/01 09:22:05 by scollon           #+#    #+#             */
+/*   Updated: 2016/02/01 09:22:08 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char		*ft_itoa(int nbr)
 	char	*ret;
 
 	len = ft_nbrlen((long)nbr, &abs);
-	if ((ret = (char *)malloc(sizeof(char) * len)) == NULL)
+	if (!(ret = ft_strnew(len)))
 		return (NULL);
 	ret[len] = '\0';
 	abs == -1 ? ret[0] = '-' : 0;

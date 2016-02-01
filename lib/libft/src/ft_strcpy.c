@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 14:56:15 by scollon           #+#    #+#             */
-/*   Updated: 2015/11/25 12:50:25 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/29 16:03:58 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@ char	*ft_strcpy(char *dst, char const *src)
 	int		i;
 
 	i = 0;
-	while (src[i] != 0)
+	while (*src)
 	{
-		dst[i] = src[i];
-		i++;
+		dst[i++] = *src;
+		src++;
 	}
 	dst[i] = 0;
 	return (dst);

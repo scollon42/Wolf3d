@@ -6,25 +6,19 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 10:08:19 by scollon           #+#    #+#             */
-/*   Updated: 2015/11/27 16:44:31 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/29 15:46:45 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	*ft_strcat(char *s1, const char *s2)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
 	while (s1[i] != '\0')
 		i++;
-	while (s2[j] != '\0')
-	{
-		s1[i] = s2[j];
-		i++;
-		j++;
-	}
+	while (*s2 != 0)
+		s1[i++] = *(s2++);
 	s1[i] = '\0';
 	return (s1);
 }

@@ -6,7 +6,7 @@
 /*   By: scollon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 17:48:56 by scollon           #+#    #+#             */
-/*   Updated: 2015/11/26 09:58:10 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/29 16:29:43 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,11 @@
 
 void	ft_striter(char *s, void (*f)(char *))
 {
-	int	i;
-
-	i = 0;
 	if (s == NULL || f == NULL)
 		return ;
-	while (s[i] != 0)
+	while (*s != 0)
 	{
-		f(&s[i]);
-		i++;
+		f(s);
+		s++;
 	}
 }

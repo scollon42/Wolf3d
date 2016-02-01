@@ -6,7 +6,7 @@
 /*   By: scollon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 15:39:33 by scollon           #+#    #+#             */
-/*   Updated: 2015/11/23 17:48:44 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/29 13:08:19 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,13 @@
 
 void	*ft_memalloc(size_t size)
 {
-	void	*mem;
+	char	*mem;
 
-	if ((mem = (void *)malloc(sizeof(void) * size)) == NULL)
+	if ((mem = (char *)malloc(sizeof(char) * size)) == NULL)
 		return (NULL);
-	return (mem);
+	size += 1;
+	while (--size > 0)
+		mem[size] = 0;
+	mem[size] = 0;
+	return ((void*)mem);
 }

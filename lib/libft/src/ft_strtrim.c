@@ -6,22 +6,11 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 14:53:40 by scollon           #+#    #+#             */
-/*   Updated: 2015/11/30 15:31:19 by scollon          ###   ########.fr       */
+/*   Updated: 2016/02/01 08:57:50 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static int	ft_is_the_end(char const *s, int i)
-{
-	while (s[i] != 0)
-	{
-		if (s[i] != ' ' && s[i] != ',' && s[i] != '\n' && s[i] != '\t')
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 char		*ft_strtrim(char const *s)
 {
@@ -34,20 +23,15 @@ char		*ft_strtrim(char const *s)
 	j = 0;
 	if (s == NULL)
 		return (NULL);
-	len = ft_strlen(s);
-	if ((trim = (char *)malloc(sizeof(char) * len + 1)) == 0)
+	len = ft_strlen(s) - 1;
+	while (s[len] == ' ' || s[len] == '\n' || s[len] == '\t')
+		len--;
+	while ((s[i] == ' ' || s[i] == '\n' || s[i] == '\t') && s[i] != '\0')
+		i++;
+	len = i > len ? 1 : len - i + 2;
+	if (!(trim = ft_strnew(len)))
 		return (NULL);
-	while (s[i] == ' ' || s[i] == '\n' || s[i] == ',' || s[i] == '\t')
-		i++;
-	while (s[i] != 0)
-	{
-		if (!ft_is_the_end(s, i))
-		{
-			trim[j] = s[i];
-			j++;
-		}
-		i++;
-	}
-	trim[j] = 0;
+	while (--len > 0)
+		trim[j++] = s[i++];
 	return (trim);
 }

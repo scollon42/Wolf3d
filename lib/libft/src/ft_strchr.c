@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 10:30:24 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/18 07:56:39 by scollon          ###   ########.fr       */
+/*   Updated: 2016/01/29 15:55:43 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,13 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	int				i;
-	unsigned char	*ret;
-
-	i = -1;
-	ret = (unsigned char *)s;
-	while (ret[++i] != 0)
+	while (*s != 0)
 	{
-		if (ret[i] == c)
-			return ((char *)&ret[i]);
+		if (*s == (unsigned char)c)
+			return ((char *)s);
+		s++;
 	}
-	if (ret[i] == c)
-		return ((char *)&ret[i]);
+	if (*s == c)
+		return ((char *)s);
 	return (NULL);
 }

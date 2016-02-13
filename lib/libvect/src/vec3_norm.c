@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_rotate.c                                       :+:      :+:    :+:   */
+/*   vec3_norm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/21 08:18:44 by scollon           #+#    #+#             */
-/*   Updated: 2016/02/08 13:58:30 by scollon          ###   ########.fr       */
+/*   Created: 2016/02/08 12:53:37 by scollon           #+#    #+#             */
+/*   Updated: 2016/02/08 13:18:33 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libvect.h"
 
-void	vec_rotate(t_vect *v, float theta)
+t_vect3d	vec3_norm(t_vect3d v3)
 {
-	t_vect	t;
+	float		magnitude;
+	t_vect3d	r;
 
-	theta *= D2R;
-	t.x = v->x * cos(theta) + v->y * -sin(theta);
-	t.y = v->x * sin(theta) + v->y * cos(theta);
-	v->x = t.x;
-	v->y = t.y;
+	magnitude = vec3_magnitude(v3);
+	r.x = v3.x / magnitude;
+	r.y = v3.y / magnitude;
+	r.z = v3.z / magnitude;
+	return (r);
 }

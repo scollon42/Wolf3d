@@ -6,7 +6,7 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 14:38:58 by scollon           #+#    #+#             */
-/*   Updated: 2016/01/06 14:44:38 by scollon          ###   ########.fr       */
+/*   Updated: 2016/02/12 14:29:11 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int		ft_str_to_hex(char *str)
 	{
 		if (ft_isdigit(str[i]))
 			hex += (str[i] - '0') * e;
-		else if ('a' <= str[i] && str[i] <= 'f')
+		else if (str[i] >= 'a' && str[i] <= 'f')
 			hex += (str[i] - 'a' + 10) * e;
-		else if ('A' <= str[i] && str[i] <= 'F')
+		else if (str[i] >= 'A' && str[i] <= 'F')
 			hex += (str[i] - 'A' + 10) * e;
 		e *= 16;
 	}

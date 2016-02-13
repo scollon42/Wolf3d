@@ -6,22 +6,28 @@
 #    By: scollon <scollon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 13:40:40 by scollon           #+#    #+#              #
-#    Updated: 2016/01/21 08:38:05 by scollon          ###   ########.fr        #
+#    Updated: 2016/02/08 13:40:10 by scollon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-SRC_PATH = ./src/
-OBJ_PATH = ./obj/
-INC_PATH = ./includes/
+SRC_PATH	= ./src/
+OBJ_PATH	= ./obj/
+INC_PATH	= ./includes/
 
-NAME = libvect.a
-CC = gcc
-CFGLAGS = -Werror -Wextra -Wall
+NAME 		= libvect.a
+CC 			= gcc
+CFGLAGS 	= -Werror -Wextra -Wall
 
-SRC_NAME  = vec_create.c vec_add.c vec_sub.c vec_cmp.c vec_mult.c vec_div.c \
-			vec_magnitude.c vec_norm.c vec_scale.c vec_rotate.c vec_to_int.c \
-			int_to_vec.c
+SRC_NAME  	=	vec_create.c vec_add.c vec_sub.c vec_mult.c \
+			vec_div.c vec_magnitude.c vec_norm.c vec_scale.c \
+			vec_rotate.c vec_to_int.c int_to_vec.c \
+			vec3_create.c vec3_add.c vec3_sub.c \
+			vec3_mult.c vec3_mult_vec.c vec3_div.c \
+			vec3_magnitude.c vec3_norm.c vec3_scale.c \
+			vec3_dot_product.c vec3_up.c vec3_right.c vec3_forward.c \
+			vec3_rotate.c vec3_cross_product.c vec3_clamp.c
+
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 

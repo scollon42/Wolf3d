@@ -6,9 +6,11 @@
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 09:22:22 by scollon           #+#    #+#             */
-/*   Updated: 2016/02/01 09:22:33 by scollon          ###   ########.fr       */
+/*   Updated: 2016/02/08 15:06:21 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 void	*ft_memset(void *b, int c, size_t len)
 {

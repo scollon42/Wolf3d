@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_rotate.c                                       :+:      :+:    :+:   */
+/*   vec3_mult.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/21 08:18:44 by scollon           #+#    #+#             */
-/*   Updated: 2016/02/08 13:58:30 by scollon          ###   ########.fr       */
+/*   Created: 2016/02/08 12:39:37 by scollon           #+#    #+#             */
+/*   Updated: 2016/02/09 16:29:29 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libvect.h"
 
-void	vec_rotate(t_vect *v, float theta)
+t_vect3d	vec3_mult(const t_vect3d v3a, const double mult)
 {
-	t_vect	t;
+	t_vect3d	r;
 
-	theta *= D2R;
-	t.x = v->x * cos(theta) + v->y * -sin(theta);
-	t.y = v->x * sin(theta) + v->y * cos(theta);
-	v->x = t.x;
-	v->y = t.y;
+	r.x = v3a.x * mult;
+	r.y = v3a.y * mult;
+	r.z = v3a.z * mult;
+	return (r);
 }

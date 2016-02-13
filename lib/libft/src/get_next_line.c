@@ -5,22 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: scollon <scollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/01 09:24:06 by scollon           #+#    #+#             */
-/*   Updated: 2016/02/01 09:26:38 by scollon          ###   ########.fr       */
+/*   Created: 2015/12/14 08:22:00 by scollon           #+#    #+#             */
+/*   Updated: 2016/01/21 14:33:10 by scollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	fill_line(int const fd, char **line, char **r, char *el)
+static void	fill_line(int const fd, char **line, char **r)
 {
 	char *del;
 
-	if (el)
+	if (ft_strchr(r[fd], '\n'))
 	{
 		del = r[fd];
-		*line = ft_strsub(r[fd], 0, el - r[fd]);
-		r[fd] = ft_strsub(r[fd], el - r[fd] + 1, ft_strlen(r[fd]));
+		*line = ft_strsub(r[fd], 0, ft_strchr(r[fd], '\n') - r[fd]);
+		r[fd] = ft_strsub(r[fd], ft_strchr(r[fd], '\n') - r[fd] + 1,
+				ft_strlen(r[fd]));
 		ft_strdel(&del);
 	}
 	else
@@ -32,18 +33,15 @@ static void	fill_line(int const fd, char **line, char **r, char *el)
 
 int			get_next_line(int const fd, char **line)
 {
-	int				ret;
-	char			*del;
-	char			*el;
-	char			buf[BUFF_SIZE + 1];
-	static char		*r[256];
+	int			ret;
+	char		*del;
+	char		buf[BUFF_SIZE + 1];
+	static char *r[2147483648];
 
-	if (!line || fd < 0 || fd > 256 || BUFF_SIZE < 1)
+	r[fd] = (r[fd] == NULL ? ft_strnew(1) : r[fd]);
+	if (!line || fd < 0 || !r[fd])
 		return (-1);
-	if (!(r[fd] = (r[fd] == NULL ? ft_strnew(1) : r[fd])))
-		return (-1);
-	while ((el = ft_strchr(r[fd], '\n')) &&
-		(ret = read(fd, buf, BUFF_SIZE)) > 0)
+	while (!ft_strchr(r[fd], '\n') && (ret = read(fd, buf, BUFF_SIZE)) > 0)
 	{
 		buf[ret] = 0;
 		del = r[fd];
@@ -52,6 +50,6 @@ int			get_next_line(int const fd, char **line)
 	}
 	if (ret == -1)
 		return (-1);
-	fill_line(fd, line, r, el);
-	return (1);
+	fill_line(fd, line, r);
+	return (!r[fd] && !ft_strlen(*line) ? 0 : 1);
 }
